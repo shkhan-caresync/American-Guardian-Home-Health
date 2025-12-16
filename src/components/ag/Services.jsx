@@ -22,6 +22,7 @@ function Services() {
       title: "Home Safety & Education",
       desc: "Fall-risk reduction, caregiver training, and a clear plan everyone understands.",
       image: "/images/service-safety.png",
+      imageClass: "object-[center_40%] scale-110",
     },
     {
       icon: HeartPulse,
@@ -45,7 +46,15 @@ function Services() {
           {items.map((i, idx) => {
             const colorSchemes = ["cyan", "purple", "emerald", "orange"];
             return (
-              <Badge key={i.title} icon={i.icon} title={i.title} desc={i.desc} colorScheme={colorSchemes[idx % 4]} image={i.image} />
+              <Badge
+                key={i.title}
+                icon={i.icon}
+                title={i.title}
+                desc={i.desc}
+                colorScheme={colorSchemes[idx % 4]}
+                image={i.image}
+                imageClass={i.imageClass}
+              />
             );
           })}
         </div>

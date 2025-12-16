@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../../utils/cn";
 
-function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image }) {
+function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClass }) {
   const colorSchemes = {
     cyan: {
       border: "border-cyan-300/60",
@@ -82,7 +82,7 @@ function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image }) {
             <img
               src={image}
               alt={title}
-              className="w-full h-full object-cover object-[center_30%]"
+              className={cn("w-full h-full object-cover", imageClass || "object-[center_30%]")}
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/70 via-white/20 to-transparent" />
           </div>
