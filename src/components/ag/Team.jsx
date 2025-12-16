@@ -5,10 +5,34 @@ import SectionTitle from "./ui/SectionTitle";
 
 function Team() {
   const people = [
-    { name: "Clinical Director (RN)", role: "Care plan oversight", tag: "Leadership", image: "/images/team-director.png" },
-    { name: "Skilled Nurse (RN/LVN)", role: "Visits & monitoring", tag: "Nursing", image: "/images/team-nurse.png" },
-    { name: "Therapy Team", role: "PT/OT/ST coordination", tag: "Therapy", image: "/images/team-therapy.png" },
-    { name: "Care Coordinator", role: "Scheduling & family updates", tag: "Operations", image: "/images/team-coordinator.png" },
+    {
+      name: "Clinical Director (RN, DPCS)",
+      role: "Director of Patient Care Services",
+      tag: "Leadership",
+      image: "/images/team-director.png",
+      bio: "Oversees all nursing and therapy services, signs off on plans of care, audits documentation, and ensures every visit meets quality, safety, and regulatory standards.",
+    },
+    {
+      name: "Skilled Nurse (RN/LVN)",
+      role: "In-home nursing visits",
+      tag: "Nursing",
+      image: "/images/team-nurse.png",
+      bio: "Provides in‑home skilled nursing: assessments, vitals, wound care, medication management, and clear teaching so families know what to watch for between visits.",
+    },
+    {
+      name: "Therapy Team",
+      role: "PT / OT / ST coordination",
+      tag: "Therapy",
+      image: "/images/team-therapy.png",
+      bio: "Delivers physical, occupational, and speech therapy focused on strength, balance, safe transfers, and independence in everyday home activities.",
+    },
+    {
+      name: "Care Coordinator",
+      role: "Scheduling & family updates",
+      tag: "Operations",
+      image: "/images/team-coordinator.png",
+      bio: "Handles scheduling, intake paperwork, authorizations, and proactive phone updates so families know who is coming, when, and what happens next.",
+    },
   ];
 
   return (
@@ -16,8 +40,8 @@ function Team() {
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
         <SectionTitle
           kicker="Care Team"
-          title="Professional, calm, and coordinated"
-          desc="Replace titles and bios with your real leadership/team highlights."
+          title="The clinicians behind American Guardian"
+          desc="A small, coordinated team of nurses, therapists, and care coordinators focused on safe, timely, in‑home care."
         />
 
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -55,6 +79,11 @@ function Team() {
                 </div>
                 <div className="mt-4 text-base font-semibold text-slate-900">{p.name}</div>
                 <div className="mt-1 text-sm text-slate-600">{p.role}</div>
+                {p.bio && (
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                    {p.bio}
+                  </p>
+                )}
 
                 <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 

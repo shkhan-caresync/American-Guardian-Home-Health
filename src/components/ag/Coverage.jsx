@@ -11,8 +11,8 @@ function Coverage() {
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
         <SectionTitle
           kicker="Coverage"
-          title="Service areas, designed for speed"
-          desc="Update this section with your actual service counties/cities and payer mix."
+          title="Service areas we serve today"
+          desc="Licensed home health services across the Sacramento region with rapid start of care for eligible patients."
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
@@ -51,11 +51,11 @@ function Coverage() {
               <div className="mt-7 rounded-2xl border border-slate-200 bg-slate-50 p-5">
                 <div className="flex items-center gap-2 text-xs text-slate-600">
                   <Shield className="h-4 w-4 text-cyan-500" />
-                  Insurance & eligibility (placeholder)
+                  Insurance & eligibility
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  We can verify coverage and confirm service availability quickly. Replace this copy with
-                  your exact payer types (Medicare/Commercial/Private Pay) and intake workflow.
+                  We currently accept traditional Medicare and select Medicare Advantage and commercial plans in the Sacramento area.
+                  During intake we verify benefits, confirm homebound status when required, and walk families through any out‑of‑pocket costs.
                 </p>
               </div>
               </div>

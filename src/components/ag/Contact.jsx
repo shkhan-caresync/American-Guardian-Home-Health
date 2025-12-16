@@ -12,8 +12,8 @@ function Contact() {
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
         <SectionTitle
           kicker="Contact"
-          title="Request care in minutes"
-          desc="Drop in your real phone/email and wire this form to your CRM (HubSpot, Salesforce, etc.)."
+          title="Request home health services"
+          desc="Share a few details and our intake team will call you back to review eligibility, benefits, and next steps."
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
@@ -24,21 +24,21 @@ function Contact() {
                   <span className="text-sm font-medium text-slate-700">Full name</span>
                   <input
                     className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
-                    placeholder="Your name"
+                    placeholder="Full name of patient or contact person"
                   />
                 </label>
                 <label className="grid gap-2">
                   <span className="text-sm font-medium text-slate-700">Phone</span>
                   <input
                     className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
-                    placeholder="(xxx) xxx-xxxx"
+                    placeholder="Best phone number for follow-up"
                   />
                 </label>
                 <label className="grid gap-2 sm:col-span-2">
                   <span className="text-sm font-medium text-slate-700">Email</span>
                   <input
                     className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
-                    placeholder="you@email.com"
+                    placeholder="Email for visit confirmations (optional)"
                   />
                 </label>
                 <label className="grid gap-2 sm:col-span-2">
@@ -46,7 +46,7 @@ function Contact() {
                   <textarea
                     rows={4}
                     className="rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
-                    placeholder="Tell us about your loved one's situation, timeline, and location."
+                    placeholder="Who is the patient, what support do they need, and what city are they located in?"
                   />
                 </label>
               </div>
@@ -128,20 +128,38 @@ function Contact() {
           </div>
         </div>
 
-        <div className="mt-16 h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-        <footer className="mt-10 flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-          <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-cyan-100 bg-cyan-50">
-              <img src={LOGO_SRC} alt="American Guardian Home Health" className="h-9 w-9 object-contain" />
+      </div>
+      {/* Global footer */}
+      <div className="mt-16 border-t border-slate-200/80 bg-white/90 backdrop-blur-sm">
+        <footer className="mx-auto w-full max-w-[1920px] px-6 py-6 sm:px-8 lg:px-12 xl:px-16">
+          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            {/* Brand */}
+            <div className="flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-cyan-100 bg-cyan-50">
+                <img src={LOGO_SRC} alt="American Guardian Home Health" className="h-9 w-9 object-contain" />
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-slate-900">American Guardian Home Health</div>
+                <div className="text-xs text-slate-600">Serving Sacramento and surrounding communities</div>
+              </div>
             </div>
-            <div>
-              <div className="text-sm font-semibold text-slate-900">American Guardian Home Health</div>
-              <div className="text-xs text-slate-600">Premium home health services</div>
+
+            {/* Contact & address */}
+            <div className="text-xs text-slate-600 space-y-1">
+              <div className="font-semibold text-slate-900">Office & intake</div>
+              <div>Sacramento, CA • Home health services in the greater Sacramento region</div>
+              <div>Phone: +1 (916) 573-3231</div>
+              <div>Fax: +1 (916) 415-2574</div>
+              <div>Email: intake@americanguardianhomehealth.com</div>
+              <div>Hours: Mon–Fri 8:00am–6:00pm (after-hours triage available)</div>
+            </div>
+
+            {/* Legal */}
+            <div className="text-xs text-slate-500 space-y-1 md:text-right">
+              <div>© {new Date().getFullYear()} American Guardian Home Health.</div>
+              <div>All rights reserved. Not for emergency use—call 911 in an emergency.</div>
             </div>
           </div>
-
-          <div className="text-xs text-slate-500">© {new Date().getFullYear()} American Guardian Home Health. All rights reserved.</div>
         </footer>
       </div>
     </section>
