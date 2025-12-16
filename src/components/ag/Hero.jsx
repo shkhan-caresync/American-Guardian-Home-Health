@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, BadgeCheck, CheckCircle2, Clock, HeartPulse, MapPin, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, Shield, Sparkles } from "lucide-react";
 import ParticleField from "./ui/ParticleField";
 import GlowBlob from "./ui/GlowBlob";
 import GlassCard from "./ui/GlassCard";
@@ -52,11 +52,11 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 rounded-full border border-cyan-300/50 bg-gradient-to-r from-cyan-100 via-blue-100 to-indigo-100 px-3 py-1 text-xs font-medium text-cyan-700 backdrop-blur shadow-sm"
+              className="inline-flex flex-wrap items-center gap-2 rounded-full border border-cyan-300/50 bg-gradient-to-r from-cyan-100 via-blue-100 to-indigo-100 px-3 py-1.5 text-xs font-medium text-cyan-700 backdrop-blur shadow-sm"
             >
               <Shield className="h-3.5 w-3.5 text-cyan-600" />
-              Licensed • Compassionate • Outcomes-focused
-              <span className="ml-1 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 px-2 py-0.5 text-[11px] text-purple-700 border border-purple-200/50">
+              <span className="whitespace-nowrap">Licensed • Compassionate • Outcomes-focused</span>
+              <span className="ml-1 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 px-2 py-0.5 text-[11px] text-purple-700 border border-purple-200/50 whitespace-nowrap">
                 <Sparkles className="h-3 w-3 text-purple-600" />
                 Modern care experience
               </span>
@@ -66,7 +66,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05, duration: 0.9, ease: "easeOut" }}
-              className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent sm:text-6xl"
+              className="mt-6 text-3xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent sm:text-4xl md:text-5xl lg:text-6xl"
             >
               Home health that feels
               <span className="block">
@@ -78,7 +78,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.9, ease: "easeOut" }}
-              className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600"
+              className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
             >
               <AnimatedUnderline /> delivers coordinated nursing, therapy, and support—
               designed around your loved one’s goals, schedule, and safety.
@@ -90,12 +90,12 @@ function Hero() {
               transition={{ delay: 0.18, duration: 0.9, ease: "easeOut" }}
               className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
-              <MagneticButton className="px-6 py-3.5 text-base" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              <MagneticButton className="px-6 py-3.5 text-sm sm:text-base min-h-[44px]" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
                 Request a care plan
               </MagneticButton>
               <a
                 href="#services"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3 text-base font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-cyan-200"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3 text-sm sm:text-base font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-cyan-200 min-h-[44px]"
               >
                 Explore services
                 <span className="h-6 w-6 rounded-full bg-cyan-50 grid place-items-center border border-cyan-200">
@@ -108,7 +108,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.9, ease: "easeOut" }}
-              className="mt-10 grid grid-cols-3 gap-3 max-w-xl"
+              className="mt-10 grid grid-cols-3 gap-2 sm:gap-3 max-w-xl"
             >
               {[{
                 label: "Patients served",
@@ -127,15 +127,26 @@ function Hero() {
               }].map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-2xl border border-cyan-200/50 bg-gradient-to-br from-white via-cyan-50/50 to-blue-50/50 px-4 py-3 shadow-md ring-1 ring-cyan-100/50"
+                  className="rounded-2xl border border-cyan-200/50 bg-gradient-to-br from-white via-cyan-50/50 to-blue-50/50 px-3 py-2.5 sm:px-4 sm:py-3 shadow-md ring-1 ring-cyan-100/50"
                 >
-                  <div className="text-lg font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                  <div className="text-base sm:text-lg font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                     <CountUp value={s.value} suffix={s.suffix} />
                   </div>
-                  <div className="text-xs text-slate-600">{s.label}</div>
+                  <div className="text-[10px] sm:text-xs text-slate-600 leading-tight">{s.label}</div>
                 </div>
               ))}
             </motion.div>
+
+            {/* Trust line */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.32, duration: 0.8, ease: "easeOut" }}
+              className="mt-4 text-xs text-slate-600 leading-relaxed"
+            >
+              <span className="block sm:inline">Licensed clinicians • Coordinated nursing & therapy</span>
+              <span className="block sm:inline sm:ml-1">Serving Sacramento • Elk Grove • Roseville • Folsom • Surrounding communities</span>
+            </motion.p>
 
             <ScrollHint />
           </div>
@@ -166,35 +177,6 @@ function Hero() {
                 </div>
               </GlassCard>
 
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="absolute -left-6 top-14 hidden w-48 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg lg:block"
-                style={{ transform: "translateZ(40px)" }}
-              >
-                <div className="flex items-center gap-2 text-xs text-slate-600">
-                  <HeartPulse className="h-4 w-4 text-cyan-500" />
-                  Outcomes
-                </div>
-                <div className="mt-2 text-sm font-semibold text-slate-900">Care you can measure</div>
-                <div className="mt-1 text-xs text-slate-600">Progress tracking and clear next steps</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.65, duration: 0.8 }}
-                className="absolute -right-6 bottom-14 hidden w-52 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg lg:block"
-                style={{ transform: "translateZ(40px)" }}
-              >
-                <div className="flex items-center gap-2 text-xs text-slate-600">
-                  <Shield className="h-4 w-4 text-cyan-500" />
-                  Safety
-                </div>
-                <div className="mt-2 text-sm font-semibold text-slate-900">Guardian-level oversight</div>
-                <div className="mt-1 text-xs text-slate-600">Clinician-led plan adjustments</div>
-              </motion.div>
             </motion.div>
           </div>
         </div>

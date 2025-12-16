@@ -1,9 +1,13 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { cn } from "../../../utils/cn";
 
 function GlassCard({ children, className }) {
   return (
-    <div
+    <motion.div
+      whileHover={{ y: -4, scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
       className={cn(
         "relative overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white/75 via-white/65 to-cyan-50/40",
         "shadow-[0_28px_80px_-40px_rgba(14,116,144,0.35)] ring-1 ring-cyan-200/60 backdrop-blur-2xl",
@@ -25,7 +29,7 @@ function GlassCard({ children, className }) {
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.20) 0%,rgba(200,230,255,0.08) 25%,rgba(255,255,255,0.0) 45%,rgba(255,200,230,0.08) 75%,rgba(255,255,255,0.20) 100%)] opacity-80" />
       </div>
       <div className="relative">{children}</div>
-    </div>
+    </motion.div>
   );
 }
 

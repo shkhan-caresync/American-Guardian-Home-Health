@@ -29,21 +29,27 @@ function Coverage() {
               </div>
               
               <div className="p-7 sm:p-9">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">Primary region</div>
-                    <div className="mt-1 text-sm text-slate-600">Sacramento • Elk Grove • Roseville • Folsom • Surrounding</div>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-semibold text-slate-900">Agency location</div>
+                    <div className="mt-1 text-sm text-slate-600 leading-relaxed">
+                      9343 Tech Center Dr, Suite 140
+                      <br />
+                      Sacramento, CA 95826-2579
+                    </div>
+                    <div className="mt-4 text-sm font-semibold text-slate-900">Primary region</div>
+                    <div className="mt-1 text-sm text-slate-600 leading-relaxed">Sacramento • Elk Grove • Roseville • Folsom</div>
                   </div>
-                  <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
+                  <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3 flex-shrink-0">
                     <MapPin className="h-6 w-6 text-cyan-500" />
                   </div>
                 </div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {["Start of Care within 24–48 hours (when eligible)", "RN-led plan of care", "Family communication protocols", "Therapy coordination"].map((t) => (
-                  <div key={t} className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <CheckCircle2 className="h-4 w-4 text-cyan-500" />
-                    <span className="text-sm text-slate-700">{t}</span>
+                  <div key={t} className="flex items-start gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 leading-relaxed">{t}</span>
                   </div>
                 ))}
               </div>
@@ -69,32 +75,30 @@ function Coverage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
               >
-                <div className="pointer-events-none absolute inset-0 opacity-50">
-                  <div className="absolute -top-24 left-10 h-64 w-64 rounded-full bg-cyan-100/40 blur-3xl" />
-                </div>
-                <div className="relative flex items-start justify-between">
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">Rapid intake</div>
-                    <div className="mt-1 text-sm text-slate-600">Streamlined documents & scheduling</div>
+                <GlassCard className="p-7">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">Rapid intake</div>
+                      <div className="mt-1 text-sm text-slate-600">Streamlined documents & scheduling</div>
+                    </div>
+                    <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
+                      <Clock className="h-6 w-6 text-cyan-500" />
+                    </div>
                   </div>
-                  <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
-                    <Clock className="h-6 w-6 text-cyan-500" />
+                  <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                    <motion.div
+                      className="h-full rounded-full bg-cyan-500"
+                      initial={{ x: "-30%" }}
+                      animate={{ x: ["-30%", "120%"] }}
+                      transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                      aria-hidden="true"
+                    />
                   </div>
-                </div>
-                <div className="relative mt-5 h-2 w-full overflow-hidden rounded-full bg-slate-100">
-                  <motion.div
-                    className="h-full rounded-full bg-cyan-500"
-                    initial={{ x: "-30%" }}
-                    animate={{ x: ["-30%", "120%"] }}
-                    transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-                    aria-hidden="true"
-                  />
-                </div>
-                <p className="relative mt-4 text-sm text-slate-600">
-                  A high-touch process that feels effortless: clear checklists, fast callbacks, and clinician-led planning.
-                </p>
+                  <p className="mt-4 text-sm text-slate-600">
+                    A high-touch process that feels effortless: clear checklists, fast callbacks, and clinician-led planning.
+                  </p>
+                </GlassCard>
               </motion.div>
 
               <motion.div
@@ -102,25 +106,56 @@ function Coverage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ delay: 0.08, duration: 0.7, ease: "easeOut" }}
-                className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
               >
-                <div className="pointer-events-none absolute inset-0 opacity-50">
-                  <div className="absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-sky-100/40 blur-3xl" />
-                </div>
-                <div className="relative flex items-start justify-between">
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">Care quality</div>
-                    <div className="mt-1 text-sm text-slate-600">Consistency, documentation, outcomes</div>
+                <GlassCard className="p-7">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">Care quality</div>
+                      <div className="mt-1 text-sm text-slate-600">Consistency, documentation, outcomes</div>
+                    </div>
+                    <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
+                      <BadgeCheck className="h-6 w-6 text-cyan-500" />
+                    </div>
                   </div>
-                  <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
-                    <BadgeCheck className="h-6 w-6 text-cyan-500" />
-                  </div>
-                </div>
-                <p className="relative mt-4 text-sm text-slate-600">
-                  Built like a modern product: standardized workflows, reliable follow-through, and a premium family experience.
-                </p>
+                  <p className="mt-4 text-sm text-slate-600">
+                    Built like a modern product: standardized workflows, reliable follow-through, and a premium family experience.
+                  </p>
+                </GlassCard>
               </motion.div>
             </div>
+          </div>
+        </div>
+
+        {/* Service areas and CTAs */}
+        <div className="mt-10 grid gap-6 border-t border-slate-200 pt-8 lg:grid-cols-3 text-sm text-slate-700">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Service Areas</div>
+            <div className="mt-2 text-sm font-semibold text-slate-900">Primary hubs</div>
+            <p className="mt-1 text-sm text-slate-600">
+              Sacramento metro, including Sacramento, Elk Grove, Roseville, and Folsom.
+            </p>
+            <div className="mt-3 text-sm font-semibold text-slate-900">Approved California counties</div>
+            <p className="mt-1 text-sm text-slate-600 leading-relaxed">
+              Alpine, Amador, Butte, Calaveras, Colusa, Contra Costa, El Dorado, Glenn, Lake, Napa, Nevada, Placer, Sacramento,
+              San Joaquin, Sierra, Solano, Sonoma, Stanislaus, Sutter, Tuolumne, Yolo, and Yuba.
+            </p>
+            <p className="mt-3 text-xs text-slate-500">
+              Coverage varies by clinical need and staffing availability.
+            </p>
+          </div>
+          <div className="lg:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-2xl border border-cyan-200 bg-white px-5 py-3 text-sm font-semibold text-cyan-700 shadow-sm transition hover:bg-cyan-50 hover:border-cyan-300 min-h-[44px]"
+            >
+              Check availability
+            </a>
+            <a
+              href="tel:+19165733231"
+              className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/30 hover:from-cyan-600 hover:via-blue-600 hover:to-indigo-600 transition min-h-[44px]"
+            >
+              Call +1 (916) 573-3231
+            </a>
           </div>
         </div>
       </div>

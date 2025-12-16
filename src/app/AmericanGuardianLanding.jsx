@@ -1,10 +1,13 @@
 import React from "react";
 import Nav from "../components/ag/Nav";
 import Hero from "../components/ag/Hero";
+import WhyAmericanGuardian from "../components/ag/WhyAmericanGuardian";
 import Services from "../components/ag/Services";
 import HowItWorks from "../components/ag/HowItWorks";
 import Coverage from "../components/ag/Coverage";
+import PatientsProviders from "../components/ag/PatientsProviders";
 import Team from "../components/ag/Team";
+import PatientStories from "../components/ag/PatientStories";
 import Contact from "../components/ag/Contact";
 
 export default function AmericanGuardianLanding() {
@@ -21,10 +24,13 @@ export default function AmericanGuardianLanding() {
 
       <Nav />
       <Hero />
+      <WhyAmericanGuardian />
       <Services />
       <HowItWorks />
       <Coverage />
+      <PatientsProviders />
       <Team />
+      <PatientStories />
       <Contact />
     </div>
   );

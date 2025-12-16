@@ -35,7 +35,7 @@ function MagneticButton({ children, className, onClick }) {
       className={cn(
         "group relative inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold",
         "bg-cyan-500 text-white shadow-lg shadow-cyan-500/30 hover:bg-cyan-600",
-        "ring-1 ring-cyan-200 transition-all",
+        "ring-1 ring-cyan-200 transition-all min-h-[44px]",
         className
       )}
     >

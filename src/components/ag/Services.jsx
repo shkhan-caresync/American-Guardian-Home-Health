@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, ClipboardCheck, HeartPulse, Home, Shield, Stethoscope } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import Badge from "./ui/Badge";
+import GlassCard from "./ui/GlassCard";
 
 function Services() {
   const items = [
@@ -59,16 +60,55 @@ function Services() {
           })}
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        {/* Specialty Focus Areas - Centered */}
+        <div className="mt-12 max-w-4xl mx-auto">
+          <div className="text-center">
+            <h3 className="text-sm font-semibold text-slate-900 tracking-tight">
+              Specialty Focus Areas
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Within skilled home health, we pay particular attention to common higher‑risk needs.
+            </p>
+          </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "Wound Care", desc: "Assessment, monitoring, and coordinated healing support.", color: "cyan", image: "/images/specialty-wound-care.png", position: "object-[center_45%]", scale: "" },
+              { title: "Cardiac / CHF Support", desc: "Symptom awareness, safety education, and plan adherence.", color: "blue", image: "/images/specialty-cardiac.png", position: "object-[center_15%]", scale: "" },
+              { title: "Diabetes Management", desc: "Routine oversight and education to reduce complications.", color: "purple", image: "/images/specialty-diabetes.png", position: "object-[center_30%]", scale: "" },
+              { title: "COPD / Pulmonary Support", desc: "Breathing support education and consistent routines.", color: "emerald", image: "/images/specialty-copd.png", position: "object-[center_15%]", scale: "" },
+              { title: "Stroke Recovery", desc: "Therapy-aligned support for safe daily function.", color: "orange", image: "/images/specialty-stroke.png", position: "object-[center_35%]", scale: "scale-105" },
+              { title: "Post-Surgical Rehab", desc: "Recovery support after discharge to reduce setbacks.", color: "pink", image: "/images/specialty-post-surgical.png", position: "object-[center_35%]", scale: "scale-105" },
+            ].map((item, idx) => (
+              <GlassCard key={item.title} className="p-0 overflow-hidden">
+                <div className="relative h-44 sm:h-48 w-full overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={`w-full h-full object-cover ${item.position || "object-center"} ${item.scale || ""}`}
+                  />
+                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/80 via-white/50 to-transparent" />
+                </div>
+                <div className="p-4">
+                  <div className="font-semibold text-sm text-slate-900">{item.title}</div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    {item.desc}
+                  </p>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#how"
-            className="inline-flex items-center gap-2 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:from-purple-100 hover:to-pink-100 hover:border-purple-300"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:from-purple-100 hover:to-pink-100 hover:border-purple-300 min-h-[44px] w-full sm:w-auto"
           >
             See how it works <ArrowRight className="h-4 w-4" />
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 px-5 py-3 text-sm font-semibold text-white transition hover:from-cyan-600 hover:via-blue-600 hover:to-indigo-600 shadow-lg shadow-cyan-500/30"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 px-5 py-3 text-sm font-semibold text-white transition hover:from-cyan-600 hover:via-blue-600 hover:to-indigo-600 shadow-lg shadow-cyan-500/30 min-h-[44px] w-full sm:w-auto"
           >
             Verify coverage & availability <Shield className="h-4 w-4" />
           </a>
