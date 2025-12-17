@@ -1,10 +1,12 @@
 import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ClipboardCheck, HeartPulse, Home, Shield, Stethoscope } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import Badge from "./ui/Badge";
 import GlassCard from "./ui/GlassCard";
 
 function Services() {
+  const prefersReducedMotion = useReducedMotion?.() ?? false;
   const items = [
     {
       icon: Stethoscope,
@@ -79,22 +81,40 @@ function Services() {
               { title: "Stroke Recovery", desc: "Therapy-aligned support for safe daily function.", color: "orange", image: "/images/specialty-stroke.png", position: "object-[center_35%]", scale: "scale-105" },
               { title: "Post-Surgical Rehab", desc: "Recovery support after discharge to reduce setbacks.", color: "pink", image: "/images/specialty-post-surgical.png", position: "object-[center_35%]", scale: "scale-105" },
             ].map((item, idx) => (
-              <GlassCard key={item.title} className="p-0 overflow-hidden">
-                <div className="relative h-44 sm:h-48 w-full overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className={`w-full h-full object-cover ${item.position || "object-center"} ${item.scale || ""}`}
-                  />
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/80 via-white/50 to-transparent" />
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.7,
+                  delay: prefersReducedMotion ? 0 : idx * 0.06,
+                  ease: prefersReducedMotion ? "linear" : [0.16, 1, 0.3, 1],
+                }}
+              >
+                <div className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/80 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-[1px] hover:border-slate-300">
+                  <div className="relative h-48 sm:h-56 w-full overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className={`w-full h-full object-cover ${item.position || "object-center"}`}
+                      style={{ filter: "saturate(0.9)" }}
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white via-white/85 to-transparent" />
+                  </div>
+                  <div className="px-4 pt-3.5 pb-4 sm:px-5 sm:pb-5">
+                    <div className="text-[10px] font-semibold tracking-[0.18em] uppercase text-slate-500">
+                      Specialty care
+                    </div>
+                    <div className="mt-1 text-sm font-semibold text-slate-900 group-hover:text-slate-950 transition-colors">
+                      {item.title}
+                    </div>
+                    <p className="mt-2 text-xs lg:text-[13px] leading-relaxed text-slate-600">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-4">
-                  <div className="font-semibold text-sm text-slate-900">{item.title}</div>
-                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
-                    {item.desc}
-                  </p>
-                </div>
-              </GlassCard>
+              </motion.div>
             ))}
           </div>
         </div>

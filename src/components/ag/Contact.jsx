@@ -7,7 +7,7 @@ import { LOGO_SRC } from "../../config/brand";
 
 function Contact() {
   return (
-    <section id="contact" className="relative bg-gradient-to-b from-orange-50/30 via-white to-amber-50/30 py-12 sm:py-16 lg:py-20">
+    <section id="contact" className="relative bg-gradient-to-b from-orange-50/30 via-white to-amber-50/30 pt-12 sm:pt-16 lg:pt-20 pb-0">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.08),rgba(251,191,36,0.06),rgba(255,255,255,0)_60%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
@@ -134,103 +134,174 @@ function Contact() {
 
       </div>
       {/* Global footer */}
-      <div className="mt-12 sm:mt-14 lg:mt-16 border-t border-white/40 bg-gradient-to-t from-white/80 via-white/60 to-transparent backdrop-blur-2xl">
-        <footer className="mx-auto w-full max-w-[1920px] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-12 xl:px-16">
-          <div className="rounded-2xl sm:rounded-3xl border border-white/80 bg-white/70 p-4 sm:p-6 shadow-[0_24px_70px_-30px_rgba(15,23,42,0.55)] backdrop-blur-2xl">
-            <div className="grid gap-y-8 gap-x-10 text-xs text-slate-600 sm:grid-cols-2 lg:grid-cols-4 items-start">
-              {/* Column 1: Brand */}
-              <div>
-                <div className="flex items-center gap-3">
-                  <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-cyan-100 bg-cyan-50">
-                    <img src={LOGO_SRC} alt="American Guardian Home Health" className="h-9 w-9 object-contain" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">American Guardian Home Health</div>
-                    <div className="text-xs text-slate-600 leading-relaxed">
-                      <span className="block sm:inline">Serving Sacramento • Elk Grove • Roseville • Folsom</span>
-                      <span className="block sm:inline sm:ml-1">Surrounding communities</span>
+      <footer className="relative w-full mt-8 sm:mt-10 lg:mt-12">
+        {/* Full-bleed background band (edge-to-edge) */}
+        <div className="absolute inset-0 -z-10 w-full">
+          <div className="h-full w-full border-t border-white/30 bg-white/20 backdrop-blur-[1px]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(51,211,213,0.14),rgba(255,255,255,0)_60%)]" />
+        </div>
+
+        {/* Constrained content padding only (card is full-width) */}
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 sm:py-10">
+          <div className="w-full rounded-2xl sm:rounded-3xl border border-white/60 bg-white/70 shadow-[0_20px_60px_-32px_rgba(15,23,42,0.40)] backdrop-blur-2xl">
+            {/* Signature accent line */}
+            <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent opacity-80" />
+
+            {/* Top grid area */}
+            <div className="px-4 py-7 sm:px-6 sm:py-8 lg:px-8">
+              <div className="grid gap-y-7 gap-x-8 text-sm text-slate-600 md:grid-cols-2 lg:grid-cols-12 lg:items-start">
+                {/* Brand column */}
+                <div className="lg:col-span-5 space-y-3 min-w-0">
+                    <div className="flex items-start gap-4">
+                      <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-cyan-100 bg-cyan-50">
+                        <img
+                          src={LOGO_SRC}
+                          alt="American Guardian Home Health"
+                          className="h-9 w-9 object-contain"
+                        />
+                      </div>
+
+                      <div className="min-w-0">
+                        <div className="text-lg font-semibold tracking-tight text-slate-900">
+                          American Guardian Home Health
+                        </div>
+                        <div className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                          Serving Sacramento • Elk Grove • Roseville • Folsom • Surrounding communities
+                        </div>
+                      </div>
                     </div>
+
+                    <p className="max-w-[34ch] text-xs sm:text-sm lg:text-[13px] lg:leading-6 leading-relaxed text-slate-600">
+                      9343 Tech Center Dr, Suite 140, Sacramento, CA 95826-2579
+                    </p>
+                  </div>
+
+                  {/* Services */}
+                  <div className="lg:col-span-2">
+                    <div className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500">Services</div>
+                    <ul className="mt-3 space-y-2 text-sm lg:text-[13px]">
+                      <li>
+                        <a
+                          href="#services"
+                          className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                        >
+                          Core services
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#services"
+                          className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                        >
+                          Specialty focus areas
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#how"
+                          className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                        >
+                          How home health works
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#coverage"
+                          className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                        >
+                          Coverage &amp; service areas
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                {/* Care Team & Guides */}
+                <div className="lg:col-span-2">
+                  <div className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500">Care Team &amp; Guides</div>
+                  <ul className="mt-3 space-y-2 text-sm lg:text-[13px]">
+                    <li>
+                      <a
+                        href="#team"
+                        className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                      >
+                        Meet the care team
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#patients"
+                        className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                      >
+                        For patients &amp; families
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#providers"
+                        className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                      >
+                        For referring providers
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#stories"
+                        className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                      >
+                        Patient stories
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Contact */}
+                <div className="lg:col-span-3">
+                  <div className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500">Contact</div>
+
+                  <div className="mt-3 space-y-2 text-sm lg:text-[13px] leading-relaxed text-slate-600">
+                    <p>
+                      Phone:{" "}
+                      <a
+                        href="tel:+19165733231"
+                        className="relative inline-flex items-center font-medium text-slate-700 hover:text-slate-900 transition-colors transition-transform hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                      >
+                        +1 (916) 573-3231
+                      </a>
+                    </p>
+
+                    <p className="min-w-0">
+                      Email:{" "}
+                      <a
+                        href="mailto:intake@americanguardianhomehealth.com"
+                        className="relative inline-flex items-center font-medium text-slate-700 hover:text-slate-900 break-words transition-colors transition-transform hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                      >
+                        intake@americanguardianhomehealth.com
+                      </a>
+                    </p>
+
+                    <p>Hours: Mon–Fri 8:00am–6:00pm</p>
+                    <p>After-hours triage available</p>
                   </div>
                 </div>
-                <p className="mt-3 text-xs text-slate-600 leading-relaxed">
-                  Clinician-led home health focused on safe transitions home, clear expectations, and coordinated nursing and
-                  therapy from our Sacramento office at 9343 Tech Center Dr, Suite 140.
-                </p>
-              </div>
-
-              {/* Column 2: Services */}
-              <div>
-                <div className="font-semibold text-slate-900">Services</div>
-                <ul className="mt-2 space-y-1">
-                  <li>
-                    <a href="#services" className="hover:text-cyan-700">
-                      Core services
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#services" className="hover:text-cyan-700">
-                      Specialty focus areas
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#how" className="hover:text-cyan-700">
-                      How home health works
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#coverage" className="hover:text-cyan-700">
-                      Coverage & service areas
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 3: Care team & guides */}
-              <div>
-                <div className="font-semibold text-slate-900">Care Team & Guides</div>
-                <ul className="mt-2 space-y-1">
-                  <li>
-                    <a href="#team" className="hover:text-cyan-700">
-                      Meet the care team
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#patients" className="hover:text-cyan-700">
-                      For patients & families
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#providers" className="hover:text-cyan-700">
-                      For referring providers
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#stories" className="hover:text-cyan-700">
-                      Patient stories
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 4: Contact */}
-              <div className="sm:text-left lg:text-right">
-                <div className="font-semibold text-slate-900">Contact</div>
-                <ul className="mt-2 space-y-1 break-words">
-                  <li>Phone: <a href="tel:+19165733231" className="hover:text-cyan-700">+1 (916) 573-3231</a></li>
-                  <li>Email: <a href="mailto:intake@americanguardianhomehealth.com" className="hover:text-cyan-700 break-all">intake@americanguardianhomehealth.com</a></li>
-                  <li>Hours: Mon–Fri 8:00am–6:00pm</li>
-                  <li>After-hours triage available</li>
-                </ul>
               </div>
             </div>
 
-            <div className="mt-5 flex flex-col items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] text-slate-500 sm:flex-row">
-              <div>© {new Date().getFullYear()} American Guardian Home Health.</div>
-              <div>Not for emergency use—call 911 in an emergency.</div>
+            {/* Bottom legal bar */}
+            <div className="px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-200/80 to-transparent mb-3" />
+              <div className="flex flex-col gap-2 text-[11px] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+                <div className="space-y-1">
+                  <div>© {new Date().getFullYear()} American Guardian Home Health.</div>
+                  <div className="text-[11px] text-slate-500/90">
+                    HIPAA-aware communications • After-hours triage
+                  </div>
+                </div>
+                <div className="text-[11px] text-slate-500/90">Not for emergency use—call 911 in an emergency.</div>
+              </div>
             </div>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </section>
   );
 }

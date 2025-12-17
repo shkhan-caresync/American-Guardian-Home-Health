@@ -135,7 +135,7 @@ function Coverage() {
               Sacramento metro, including Sacramento, Elk Grove, Roseville, and Folsom.
             </p>
             <div className="mt-3 text-sm font-semibold text-slate-900">Approved California counties</div>
-            <p className="mt-1 text-sm text-slate-600 leading-relaxed">
+            <p className="mt-1 text-sm text-slate-600">
               Alpine, Amador, Butte, Calaveras, Colusa, Contra Costa, El Dorado, Glenn, Lake, Napa, Nevada, Placer, Sacramento,
               San Joaquin, Sierra, Solano, Sonoma, Stanislaus, Sutter, Tuolumne, Yolo, and Yuba.
             </p>
