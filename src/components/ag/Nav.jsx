@@ -14,11 +14,6 @@ function Nav() {
     { label: "Contact", href: "#contact" },
   ];
 
-  const careTeamSubnav = [
-    { label: "For Patients", href: "#patients" },
-    { label: "For Providers", href: "#providers" },
-    { label: "Patient Stories", href: "#stories" },
-  ];
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-white/95 via-white to-cyan-50/70 shadow-[0_18px_45px_-24px_rgba(15,23,42,0.35)] backdrop-blur-xl">
@@ -61,40 +56,15 @@ function Nav() {
 
           {/* Navigation Links - Center */}
           <div className="hidden items-center gap-8 lg:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2">
-            {nav.map((i) => {
-              if (i.label === "Care team") {
-                return (
-                  <div key={i.href} className="relative group">
-                    <a
-                      href={i.href}
-                      className="text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors py-2 tracking-tight"
-                    >
-                      {i.label}
-                    </a>
-                    <div className="pointer-events-none absolute left-0 top-full mt-1 hidden min-w-[220px] rounded-2xl border border-slate-200 bg-white/95 p-2 text-sm text-slate-700 shadow-lg backdrop-blur group-hover:pointer-events-auto group-hover:block">
-                      {careTeamSubnav.map((s) => (
-                        <a
-                          key={s.href}
-                          href={s.href}
-                          className="block rounded-xl px-3 py-1.5 hover:bg-slate-50"
-                        >
-                          {s.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-                  return (
-                    <a
-                      key={i.href}
-                      href={i.href}
-                      className="text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors py-2 tracking-tight"
-                    >
-                      {i.label}
-                    </a>
-                  );
-            })}
+            {nav.map((i) => (
+              <a
+                key={i.href}
+                href={i.href}
+                className="text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors py-2 tracking-tight"
+              >
+                {i.label}
+              </a>
+            ))}
           </div>
 
           {/* CTA Buttons - Right */}
@@ -133,29 +103,14 @@ function Nav() {
           <div className="mt-4 pb-4 border-t border-gray-200 lg:hidden">
             <div className="flex flex-col gap-1 pt-4">
               {nav.map((i) => (
-                <div key={i.href}>
-                  <a
-                    href={i.href}
-                    onClick={() => setOpen(false)}
-                    className="px-4 py-3.5 text-base font-semibold text-gray-700 hover:bg-gray-50 rounded-lg transition-colors min-h-[44px] flex items-center"
-                  >
-                    {i.label}
-                  </a>
-                  {i.label === "Care team" && (
-                    <div className="mt-1 pl-4 space-y-0.5">
-                      {careTeamSubnav.map((s) => (
-                        <a
-                          key={s.href}
-                          href={s.href}
-                          onClick={() => setOpen(false)}
-                          className="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg transition-colors min-h-[44px] flex items-center"
-                        >
-                          {s.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <a
+                  key={i.href}
+                  href={i.href}
+                  onClick={() => setOpen(false)}
+                  className="px-4 py-3.5 text-base font-semibold text-gray-700 hover:bg-gray-50 rounded-lg transition-colors min-h-[44px] flex items-center"
+                >
+                  {i.label}
+                </a>
               ))}
               <div className="pt-2 mt-2 border-t border-gray-200">
                 <a
