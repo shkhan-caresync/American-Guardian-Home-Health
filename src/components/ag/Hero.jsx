@@ -37,7 +37,7 @@ function Hero() {
   return (
     <section
       onMouseMove={onMove}
-      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-32 sm:pt-36"
+      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-24 sm:pt-28 md:pt-32 lg:pt-36"
     >
       <ParticleField className="opacity-50" />
       <GlowBlob className="-left-28 top-32 h-[520px] w-[520px]" delay={0.2} />
@@ -45,8 +45,8 @@ function Hero() {
 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.10),rgba(168,85,247,0.06),rgba(255,255,255,0)_60%)]" />
 
-      <div className="relative mx-auto w-full px-4 pb-16 sm:px-6 lg:px-10 xl:px-16 2xl:px-20">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 pb-12 sm:px-6 sm:pb-16 md:px-8 lg:px-10 lg:pb-20 xl:px-12">
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -66,7 +66,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05, duration: 0.9, ease: "easeOut" }}
-              className="mt-6 text-3xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent sm:text-4xl md:text-5xl lg:text-6xl"
+              className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent"
             >
               Home health that feels
               <span className="block">
@@ -78,7 +78,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.9, ease: "easeOut" }}
-              className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
+              className="mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-600"
             >
               <AnimatedUnderline /> delivers coordinated nursing, therapy, and support—
               designed around your loved one’s goals, schedule, and safety.
@@ -88,7 +88,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18, duration: 0.9, ease: "easeOut" }}
-              className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
+              className="mt-6 sm:mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <MagneticButton className="px-6 py-3.5 text-sm sm:text-base min-h-[44px]" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
                 Request a care plan
@@ -160,7 +160,7 @@ function Hero() {
 
               <GlassCard className="p-0 overflow-hidden">
                 {/* Hero image only - no dashboard content */}
-                <div className="relative h-64 sm:h-80 lg:h-[460px] w-full">
+                <div className="relative h-56 sm:h-72 md:h-80 lg:h-[460px] w-full">
                   <img
                     src="/images/hero-main.png"
                     alt="Nurse providing home health care during a visit"

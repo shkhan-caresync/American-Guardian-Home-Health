@@ -7,18 +7,18 @@ import { LOGO_SRC } from "../../config/brand";
 
 function Contact() {
   return (
-    <section id="contact" className="relative bg-gradient-to-b from-orange-50/30 via-white to-amber-50/30 py-20">
+    <section id="contact" className="relative bg-gradient-to-b from-orange-50/30 via-white to-amber-50/30 py-12 sm:py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.08),rgba(251,191,36,0.06),rgba(255,255,255,0)_60%)]" />
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Contact"
           title="Request home health services"
           desc="Share a few details and our intake team will call you back to review eligibility, benefits, and next steps."
         />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-1 lg:grid-cols-12">
+        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-6 lg:grid-cols-12">
           <GlassCard className="lg:col-span-7">
-            <div className="p-7 sm:p-9">
+            <div className="p-5 sm:p-7 md:p-9">
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2">
                   <span className="text-sm font-medium text-slate-700">Full name</span>
@@ -134,9 +134,9 @@ function Contact() {
 
       </div>
       {/* Global footer */}
-      <div className="mt-16 border-t border-white/40 bg-gradient-to-t from-white/80 via-white/60 to-transparent backdrop-blur-2xl">
-        <footer className="mx-auto w-full max-w-[1920px] px-6 py-8 sm:px-8 lg:px-12 xl:px-16">
-          <div className="rounded-3xl border border-white/80 bg-white/70 p-6 shadow-[0_24px_70px_-30px_rgba(15,23,42,0.55)] backdrop-blur-2xl">
+      <div className="mt-12 sm:mt-14 lg:mt-16 border-t border-white/40 bg-gradient-to-t from-white/80 via-white/60 to-transparent backdrop-blur-2xl">
+        <footer className="mx-auto w-full max-w-[1920px] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-12 xl:px-16">
+          <div className="rounded-2xl sm:rounded-3xl border border-white/80 bg-white/70 p-4 sm:p-6 shadow-[0_24px_70px_-30px_rgba(15,23,42,0.55)] backdrop-blur-2xl">
             <div className="grid gap-y-8 gap-x-10 text-xs text-slate-600 sm:grid-cols-2 lg:grid-cols-4 items-start">
               {/* Column 1: Brand */}
               <div>

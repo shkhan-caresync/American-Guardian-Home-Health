@@ -55,7 +55,7 @@ function PatientStories() {
   };
 
   return (
-    <section id="stories" className="relative bg-transparent py-20">
+    <section id="stories" className="relative bg-transparent py-12 sm:py-16 lg:py-20">
       <GlowBlob className="-left-24 top-10 h-72 w-72 opacity-70" delay={0.15} />
       <GlowBlob className="right-0 bottom-0 h-80 w-80 opacity-60" delay={0.5} />
       
@@ -69,14 +69,14 @@ function PatientStories() {
         />
       </div>
 
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Patient Stories"
           title="Experiences from families we support."
           desc="We regularly hear from families and providers about how home health has supported recovery and confidence at home."
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {stories.map((story, idx) => {
             const colors = colorClasses[story.color] || colorClasses.cyan;
             return (

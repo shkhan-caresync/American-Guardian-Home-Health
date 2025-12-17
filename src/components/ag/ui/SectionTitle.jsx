@@ -10,11 +10,11 @@ function SectionTitle({ kicker, title, desc }) {
           {kicker}
         </div>
       ) : null}
-      <h2 className="mt-5 text-3xl font-semibold tracking-tight leading-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent md:text-5xl pb-1">
+      <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent pb-1">
         {title}
       </h2>
       {desc ? (
-        <p className="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg px-2">{desc}</p>
+        <p className="mt-2 sm:mt-3 text-sm sm:text-base lg:text-lg leading-relaxed text-slate-600 px-2">{desc}</p>
       ) : null}
     </div>
   );

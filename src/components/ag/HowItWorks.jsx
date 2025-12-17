@@ -44,15 +44,15 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="relative bg-gradient-to-b from-white via-blue-50/30 to-cyan-50/40 py-20">
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+    <section id="how" className="relative bg-gradient-to-b from-white via-blue-50/30 to-cyan-50/40 py-12 sm:py-16 lg:py-20">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Process"
           title="Simple steps. Exceptional follow-through."
           desc="A smooth, professional intake—then consistent, coordinated care."
         />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-5 lg:grid-cols-3">
           {steps.map((s, idx) => (
             <motion.div
               key={s.k}
@@ -65,7 +65,7 @@ function HowItWorks() {
               <GlassCard className="h-full p-6 flex flex-col">
                 {/* Step Image */}
                 {s.image && (
-                  <div className="relative mb-6 rounded-xl overflow-hidden h-48 sm:h-56 -mx-2 flex-shrink-0">
+                  <div className="relative mb-4 sm:mb-6 rounded-xl overflow-hidden h-40 sm:h-48 md:h-56 -mx-2 flex-shrink-0">
                     <img
                       src={s.image}
                       alt={s.title}

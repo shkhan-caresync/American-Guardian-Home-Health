@@ -7,18 +7,18 @@ import GlowBlob from "./ui/GlowBlob";
 
 function PatientsProviders() {
   return (
-    <section className="relative bg-transparent py-20">
+    <section className="relative bg-transparent py-12 sm:py-16 lg:py-20">
       <GlowBlob className="-right-32 top-10 h-80 w-80 opacity-70" delay={0.2} />
       <GlowBlob className="-left-24 bottom-0 h-72 w-72 opacity-60" delay={0.5} />
 
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Who We Work With"
           title="Support for both patients and providers."
           desc="Whether you&apos;re a family member exploring home health or a clinician planning a referral, we aim to make the next steps clear."
         />
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+        <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 lg:grid-cols-2">
           {/* For Patients */}
           <motion.div
             id="patients"

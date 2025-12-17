@@ -6,18 +6,18 @@ import GlowBlob from "./ui/GlowBlob";
 
 function WhyAmericanGuardian() {
   return (
-    <section id="why" className="relative bg-transparent py-20">
+    <section id="why" className="relative bg-transparent py-12 sm:py-16 lg:py-20">
       <GlowBlob className="-left-32 top-10 h-80 w-80 opacity-70" delay={0.1} />
       <GlowBlob className="right-0 bottom-0 h-80 w-80 opacity-60" delay={0.4} />
 
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Why American Guardian"
           title="Everyone deserves confident care at home."
           desc="American Guardian Home Health delivers clinician-led care plans designed around safety, clarity, and reliability. Our focus is helping patients recover and manage conditions at home with confidence."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 sm:mt-10 grid gap-6 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}

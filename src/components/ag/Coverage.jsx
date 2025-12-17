@@ -6,20 +6,20 @@ import GlassCard from "./ui/GlassCard";
 
 function Coverage() {
   return (
-    <section id="coverage" className="relative bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/40 py-20">
+    <section id="coverage" className="relative bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/40 py-12 sm:py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(16,185,129,0.08),rgba(34,211,238,0.06),rgba(255,255,255,0)_60%)]" />
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Coverage"
           title="Service areas we serve today"
           desc="Licensed home health services across the Sacramento region with rapid start of care for eligible patients."
         />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-12">
+        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-6 lg:grid-cols-12">
           <GlassCard className="lg:col-span-7">
             <div className="p-0 overflow-hidden">
               {/* Coverage Map Image */}
-              <div className="relative h-64 sm:h-80 lg:h-96 w-full">
+              <div className="relative h-56 sm:h-72 md:h-80 lg:h-96 w-full">
                 <img
                   src="/images/coverage-map.png"
                   alt="Service coverage area map"
@@ -28,7 +28,7 @@ function Coverage() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/40" />
               </div>
               
-              <div className="p-7 sm:p-9">
+              <div className="p-5 sm:p-7 md:p-9">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-semibold text-slate-900">Agency location</div>
@@ -127,7 +127,7 @@ function Coverage() {
         </div>
 
         {/* Service areas and CTAs */}
-        <div className="mt-10 grid gap-6 border-t border-slate-200 pt-8 lg:grid-cols-3 text-sm text-slate-700">
+        <div className="mt-8 sm:mt-10 grid gap-6 border-t border-slate-200 pt-6 sm:pt-8 lg:grid-cols-3 text-sm text-slate-700">
           <div>
             <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Service Areas</div>
             <div className="mt-2 text-sm font-semibold text-slate-900">Primary hubs</div>

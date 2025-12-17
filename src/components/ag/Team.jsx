@@ -57,15 +57,15 @@ function Team() {
   ];
 
   return (
-    <section id="team" className="relative bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 py-20">
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+    <section id="team" className="relative bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 py-12 sm:py-16 lg:py-20">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Care Team"
           title="The clinicians behind American Guardian"
           desc="A small, coordinated team of nurses, therapists, and care coordinators focused on safe, timely, in‑home care."
         />
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {people.map((p, idx) => {
             const colorClasses = {
               cyan: { border: 'border-cyan-200', bg: 'from-cyan-100 to-blue-100', text: 'text-cyan-700', icon: 'text-cyan-500', check: 'text-cyan-500' },

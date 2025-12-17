@@ -19,7 +19,7 @@ function Nav() {
     <nav className="fixed left-0 right-0 top-0 z-50 w-full bg-gradient-to-b from-white/95 via-white to-cyan-50/70 shadow-[0_18px_45px_-24px_rgba(15,23,42,0.35)] backdrop-blur-xl">
       {/* Utility strip */}
       <div className="hidden border-b border-white/80 bg-gradient-to-r from-cyan-50 via-white to-indigo-50 text-[11px] text-slate-600 sm:block">
-        <div className="mx-auto flex w-full max-w-[1920px] items-center justify-between px-6 py-1.5 sm:px-8 lg:px-12 xl:px-16">
+        <div className="mx-auto flex w-full max-w-[1920px] items-center justify-between px-4 py-1 sm:px-6 sm:py-1.5 md:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center gap-3">
             <span className="font-medium text-slate-800">American Guardian Home Health</span>
             <span className="hidden md:inline text-slate-500">Licensed home health agency • Sacramento, CA</span>
@@ -39,7 +39,7 @@ function Nav() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1920px] px-6 py-3 sm:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto w-full max-w-[1920px] px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 lg:px-12 xl:px-16">
         <div className="flex items-center justify-between gap-4">
           {/* Logo Section - Left */}
           <a href="#" className="flex items-center gap-3 group">

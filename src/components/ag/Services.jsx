@@ -34,16 +34,16 @@ function Services() {
   ];
 
   return (
-    <section id="services" className="relative bg-gradient-to-b from-indigo-50/40 via-white to-purple-50/30 py-20">
+    <section id="services" className="relative bg-gradient-to-b from-indigo-50/40 via-white to-purple-50/30 py-12 sm:py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.08),rgba(59,130,246,0.06),rgba(255,255,255,0)_60%)]" />
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Services"
           title="A premium care experience, delivered at home"
           desc="Design-forward, clinician-led, and built around reliability—so families can breathe again."
         />
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((i, idx) => {
             const colorSchemes = ["cyan", "purple", "emerald", "orange"];
             return (
@@ -70,7 +70,7 @@ function Services() {
               Within skilled home health, we pay particular attention to common higher‑risk needs.
             </p>
           </div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 sm:mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { title: "Wound Care", desc: "Assessment, monitoring, and coordinated healing support.", color: "cyan", image: "/images/specialty-wound-care.png", position: "object-[center_45%]", scale: "" },
               { title: "Cardiac / CHF Support", desc: "Symptom awareness, safety education, and plan adherence.", color: "blue", image: "/images/specialty-cardiac.png", position: "object-[center_15%]", scale: "" },
@@ -99,7 +99,7 @@ function Services() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8 sm:mt-10 lg:mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href="#how"
             className="inline-flex items-center justify-center gap-2 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 px-5 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:from-purple-100 hover:to-pink-100 hover:border-purple-300 min-h-[44px] w-full sm:w-auto"
