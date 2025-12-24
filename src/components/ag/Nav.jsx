@@ -133,27 +133,18 @@ function Nav() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 w-full">
       {/* Combined nav container for seamless blend */}
-      <motion.div
-        animate={{
-          background: scrolled
-            ? "linear-gradient(to bottom, rgba(207, 250, 254, 0.4), rgba(255, 255, 255, 0.35), rgba(224, 231, 255, 0.3))"
-            : "linear-gradient(to bottom, rgba(207, 250, 254, 0.5), rgba(255, 255, 255, 1), rgba(224, 231, 255, 0.3))",
-          boxShadow: scrolled
-            ? "0 8px 30px -15px rgba(15, 23, 42, 0.15)"
-            : "none",
-        }}
-        transition={{
-          duration: reducedMotion ? 0 : 0.3,
-          ease: premiumEase,
-        }}
-        className="backdrop-blur-xl"
-      >
+      <div className={[
+        "backdrop-blur-xl transition-all duration-300",
+        scrolled
+          ? "bg-gradient-to-b from-cyan-50/40 via-white/35 to-indigo-50/30 shadow-[0_8px_30px_-15px_rgba(15,23,42,0.15)]"
+          : "bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 shadow-none",
+      ].join(" ")}>
         {/* Announcement strip - seamless blend */}
         <div className="hidden sm:block">
           <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
             <div className="flex w-full items-center justify-center py-2 sm:py-2.5">
               <p className="truncate text-[11px] sm:text-xs text-slate-700/75">
-                Licensed home health agency • Serving Sacramento, Elk Grove, Roseville & Folsom
+                Licensed home health agency • Serving Sacramento County, Placer County, Contra Costa County, Stanislaus County & surrounding counties
               </p>
             </div>
           </div>
@@ -201,7 +192,7 @@ function Nav() {
                 </div>
                 <div className="leading-tight">
                   <div 
-                    className="text-xl sm:text-2xl md:text-3xl tracking-tight bg-clip-text text-transparent drop-shadow-sm"
+                    className="text-2xl sm:text-3xl md:text-4xl tracking-tight bg-clip-text text-transparent drop-shadow-sm"
                     style={{ 
                       fontFamily: '"new-astro", sans-serif',
                       fontWeight: 700,
@@ -212,7 +203,7 @@ function Nav() {
                     American Guardian
                   </div>
                   <div 
-                    className="text-sm sm:text-base tracking-wide bg-clip-text text-transparent"
+                    className="text-base sm:text-lg tracking-wide bg-clip-text text-transparent"
                     style={{ 
                       fontFamily: '"new-astro", sans-serif',
                       fontWeight: 600,
@@ -372,7 +363,7 @@ function Nav() {
             </div>
           </div>
         ) : null}
-      </motion.div>
+      </div>
     </nav>
   );
 }

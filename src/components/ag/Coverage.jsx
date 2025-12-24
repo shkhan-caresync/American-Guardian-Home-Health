@@ -23,7 +23,7 @@ function Coverage() {
         <SectionTitle
           kicker="Coverage"
           title="Service areas we serve today"
-          desc="Licensed home health services across the Sacramento region with rapid start of care for eligible patients."
+          desc="Licensed home health services across Sacramento County, Placer County, Contra Costa County, Stanislaus County, and surrounding counties with rapid start of care for eligible patients."
         />
 
         <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-6 lg:grid-cols-12">
@@ -49,7 +49,7 @@ function Coverage() {
                       Sacramento, CA 95826-2579
                     </div>
                     <div className="mt-4 text-base font-semibold text-slate-900">Primary region</div>
-                    <div className="mt-1 text-base text-slate-600 leading-relaxed">Sacramento • Elk Grove • Roseville • Folsom</div>
+                    <div className="mt-1 text-base text-slate-600 leading-relaxed">Sacramento County • Placer County • Contra Costa County • Stanislaus County • and surrounding counties</div>
                   </div>
                   <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3 flex-shrink-0">
                     <MapPin className="h-6 w-6 text-cyan-500" />
@@ -71,7 +71,7 @@ function Coverage() {
                   Insurance & eligibility
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  We currently accept traditional Medicare and select Medicare Advantage and commercial plans in the Sacramento area.
+                  We currently accept traditional Medicare and select Medicare Advantage and commercial plans in Sacramento County, Placer County, Contra Costa County, Stanislaus County, and surrounding counties.
                   During intake we verify benefits, confirm homebound status when required, and walk families through any out‑of‑pocket costs.
                 </p>
               </div>
@@ -143,7 +143,7 @@ function Coverage() {
             <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Service Areas</div>
             <div className="mt-2 text-sm font-semibold text-slate-900">Primary hubs</div>
             <p className="mt-1 text-sm text-slate-600">
-              Sacramento metro, including Sacramento, Elk Grove, Roseville, and Folsom.
+              Sacramento County, Placer County, Contra Costa County, Stanislaus County, and surrounding counties.
             </p>
             <div className="mt-3 text-sm font-semibold text-slate-900">Approved California counties</div>
             <p className="mt-1 text-sm text-slate-600">

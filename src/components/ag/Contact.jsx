@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Clock, PhoneCall, Shield } from "lucide-react";
+import { ArrowRight, Clock, PhoneCall, Shield, Award, CheckCircle2, BadgeCheck } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
 import MagneticButton from "./ui/MagneticButton";
@@ -173,28 +173,62 @@ function Contact() {
               <div className="grid gap-y-7 gap-x-8 text-sm text-slate-600 md:grid-cols-2 lg:grid-cols-12 lg:items-start">
                 {/* Brand column */}
                 <div className="lg:col-span-5 space-y-3 min-w-0">
-                    <div className="flex items-start gap-4">
-                      <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-cyan-100 bg-cyan-50">
-                        <img
-                          src={LOGO_SRC}
-                          alt="American Guardian Home Health"
-                          className="h-9 w-9 object-contain"
-                        />
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className={[
+                        "relative grid h-12 w-12 place-items-center overflow-hidden rounded-xl shadow-sm transition-all sm:h-14 sm:w-14 backdrop-blur-sm",
+                        "bg-white/50"
+                      ].join(" ")}>
+                        <svg 
+                          width="32" 
+                          height="32" 
+                          viewBox="0 0 1200 1200" 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          className="h-8 w-8 sm:h-10 sm:w-10"
+                          fill="currentColor"
+                        >
+                          <g transform="scale(10.799934906398192) translate(3.055194218953451, 3.0558923085530623)">
+                            <g fill="#3fc1c9">
+                              <g xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.898,46.434"/>
+                                <path d="M92.544,39.92c0,3.119-0.937,6.005-2.482,8.504h10.884c0.96-2.67,1.555-5.509,1.555-8.504   c0-14.716-12.22-26.684-27.239-26.684c-8.168,0-15.424,3.613-20.421,9.215c-5.273-5.602-12.938-9.215-21.563-9.215   c-10.964,0-20.407,5.794-25.252,14.193l8.501,5.049c3.086-5.486,9.391-9.291,16.751-9.291c6.975,0,13.317,2.753,17.578,7.404   c1.093,1.193,4.407,5.172,4.407,5.172s3.533-3.806,4.569-5.172c3.485-4.613,9.081-7.404,15.429-7.404   C84.804,23.188,92.544,30.677,92.544,39.92z"/>
+                                <path d="M74.505,56.925c-0.552-2.489,0-5.251,0-5.251c-7.674,2.885-10.508,15.205-10.508,15.205l-8.572,16.037   c-3.595-20.74-13.698-29.008-17.883-34.492c-3.224-4.229-8.996-11.469-8.111-8.918c0.86,2.478,0,5.529,0,5.529   C28.047,42.273,18.096,38.4,18.096,38.4C4.825,33.422,5.187,24.485,5.187,24.485c-4.465,9.18-2.881,19.396,1.218,29.263   c5.044,12.142,29.968,23.317,36.297,26.957c7.369,4.236,10.465,11.059,10.465,11.059h1.707l1.184-1.549   c3.595-5.533,11.202-10.879,16.047-13.338c9.628-4.893,18.805-15.485,18.805-15.485c3.79-3.958,10.741-9.114,10.741-9.114   C87.675,47.104,74.505,56.925,74.505,56.925z M27.634,60.165c-8.578-4.228-13.827-14.088-13.827-14.088s4.688,6.732,15.016,12.317   c2.425,1.312,4.755,3.068,6.933,5.051c0.1-1.944-0.238-3.937-0.837-5.334c-2.178-5.064-3.105-8.117-3.105-8.117   s2.021,3.553,4.304,8.117c1.141,2.287,1.412,4.793,1.412,7.022l-0.034-0.017c8.383,8.361,14.179,19.425,14.179,19.425   S39.701,66.115,27.634,60.165z M73.592,70.566C66.099,73.487,58.03,83.846,58.03,83.846s4.018-6.288,9.433-10.838l-0.019,0.009   c0.114-1.326,0.404-2.806,1.203-4.108c1.593-2.6,2.976-4.611,2.976-4.611s-0.708,1.769-2.263,4.674   c-0.428,0.799-0.732,1.969-0.771,3.133c1.397-1.069,2.872-1.996,4.384-2.652c6.434-2.796,9.571-6.564,9.571-6.564   S78.912,68.49,73.592,70.566z"/>
+                                <path d="M42.002,68.139"/>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
                       </div>
-
-                      <div className="min-w-0">
-                        <div className="text-lg font-semibold tracking-tight text-slate-900">
-                          American Guardian Home Health
+                      <div className="leading-tight">
+                        <div 
+                          className="text-2xl sm:text-3xl md:text-4xl tracking-tight bg-clip-text text-transparent drop-shadow-sm"
+                          style={{ 
+                            fontFamily: '"new-astro", sans-serif',
+                            fontWeight: 700,
+                            backgroundImage: 'linear-gradient(to right, #364f6b, #3fc1c9, #364f6b)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent'
+                          }}>
+                          American Guardian
+                        </div>
+                        <div 
+                          className="text-base sm:text-lg tracking-wide bg-clip-text text-transparent"
+                          style={{ 
+                            fontFamily: '"new-astro", sans-serif',
+                            fontWeight: 600,
+                            backgroundImage: 'linear-gradient(to right, #364f6b, #3fc1c9)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent'
+                          }}>
+                          Home Health
                         </div>
                         <div className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                          Serving Sacramento • Elk Grove • Roseville • Folsom • Surrounding communities
+                          Serving Sacramento County • Placer County • Contra Costa County • Stanislaus County • and surrounding counties
                         </div>
+                        <p className="mt-1 text-xs sm:text-sm lg:text-[13px] lg:leading-6 leading-relaxed text-slate-600">
+                          9343 Tech Center Dr, Suite 140, Sacramento, CA 95826-2579
+                        </p>
                       </div>
                     </div>
-
-                    <p className="max-w-[34ch] text-xs sm:text-sm lg:text-[13px] lg:leading-6 leading-relaxed text-slate-600">
-                      9343 Tech Center Dr, Suite 140, Sacramento, CA 95826-2579
-                    </p>
                   </div>
 
                   {/* Services */}
@@ -306,6 +340,54 @@ function Contact() {
                 </div>
               </div>
             </div>
+
+            {/* Certifications */}
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportConfig}
+              variants={staggerContainer(reducedMotion)}
+              className="px-4 py-6 sm:px-6 sm:py-8 lg:px-8 border-t border-slate-200/50"
+            >
+              <motion.div
+                variants={fadeUp(reducedMotion)}
+                className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500 mb-4 text-center"
+              >
+                Accreditations & Certifications
+              </motion.div>
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8">
+                <motion.div
+                  variants={fadeUp(reducedMotion)}
+                  className="flex items-center gap-2 rounded-xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 to-white px-4 py-3 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <Award className="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs font-semibold text-slate-900">ACHC</div>
+                    <div className="text-[10px] text-slate-600">Accredited</div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  variants={fadeUp(reducedMotion)}
+                  className="flex items-center gap-2 rounded-xl border border-blue-200/60 bg-gradient-to-br from-blue-50/80 to-white px-4 py-3 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs font-semibold text-slate-900">Medicare</div>
+                    <div className="text-[10px] text-slate-600">Certified</div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  variants={fadeUp(reducedMotion)}
+                  className="flex items-center gap-2 rounded-xl border border-cyan-200/60 bg-gradient-to-br from-cyan-50/80 to-white px-4 py-3 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <BadgeCheck className="h-5 w-5 text-cyan-600 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs font-semibold text-slate-900">State Licensed</div>
+                    <div className="text-[10px] text-slate-600">California</div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
 
             {/* Bottom legal bar */}
             <div className="px-4 py-3 sm:px-6 sm:py-4 lg:px-8">

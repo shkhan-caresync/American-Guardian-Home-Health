@@ -32,7 +32,7 @@ function PatientStories() {
     {
       quote: "As a referring physician, I appreciate how quickly American Guardian responds to referrals and how thorough their documentation is. They keep me updated on my patients' progress, and I can see the care plans are well-coordinated. It makes my job easier knowing my patients are in good hands.",
       author: "Dr. James P.",
-      context: "Referring provider • Sacramento area",
+      context: "Referring provider • Sacramento County area",
       color: "emerald",
     },
     {

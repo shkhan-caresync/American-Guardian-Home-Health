@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, Award, CheckCircle2, BadgeCheck } from "lucide-react";
 import ParticleField from "./ui/ParticleField";
 import GlowBlob from "./ui/GlowBlob";
 import GlassCard from "./ui/GlassCard";
@@ -122,8 +122,27 @@ function Hero() {
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
-                <span className="hidden sm:inline">Sacramento • Elk Grove • Roseville • Folsom</span>
-                <span className="sm:hidden">Serving Sacramento area</span>
+                <span className="hidden sm:inline">Sacramento County • Placer County • Contra Costa County • Stanislaus County • and surrounding counties</span>
+                <span className="sm:hidden">Serving Sacramento, Placer, Contra Costa & Stanislaus Counties and surrounding counties</span>
+              </div>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div
+              variants={fadeUp(reducedMotion)}
+              className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+            >
+              <div className="flex items-center gap-1.5 rounded-lg border border-emerald-200/50 bg-emerald-50/50 px-2.5 py-1.5">
+                <Award className="h-3.5 w-3.5 text-emerald-600" />
+                <span className="text-[10px] font-medium text-slate-700">ACHC Accredited</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-lg border border-blue-200/50 bg-blue-50/50 px-2.5 py-1.5">
+                <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" />
+                <span className="text-[10px] font-medium text-slate-700">Medicare Certified</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-lg border border-cyan-200/50 bg-cyan-50/50 px-2.5 py-1.5">
+                <BadgeCheck className="h-3.5 w-3.5 text-cyan-600" />
+                <span className="text-[10px] font-medium text-slate-700">State Licensed</span>
               </div>
             </motion.div>
 
@@ -152,7 +171,7 @@ function Hero() {
                   <img
                     src="/images/hero-main.png"
                     alt="Nurse providing home health care during a visit"
-                    className="absolute inset-0 h-full w-full object-cover object-center"
+                    className="absolute inset-0 h-full w-full object-cover object-[75%_40%]"
                   />
                   {/* Soft overlay to blend with background */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
