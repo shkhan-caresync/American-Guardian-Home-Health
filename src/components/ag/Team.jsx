@@ -57,7 +57,7 @@ function Team() {
   ];
 
   return (
-    <section id="team" className="relative bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 py-12 sm:py-16 lg:py-20">
+    <section id="team" className="relative bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Care Team"
@@ -108,10 +108,10 @@ function Team() {
                       <Shield className="h-3.5 w-3.5" />
                       {p.tag}
                     </div>
-                    <div className="mt-4 text-base font-semibold text-slate-900">{p.name}</div>
-                    <div className="mt-1 text-sm text-slate-600">{p.role}</div>
+                    <div className="mt-4 text-lg font-semibold text-slate-900">{p.name}</div>
+                    <div className="mt-1 text-base text-slate-600">{p.role}</div>
                     {p.bio && (
-                      <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
                         {p.bio}
                       </p>
                     )}

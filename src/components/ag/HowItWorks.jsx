@@ -44,7 +44,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="relative bg-gradient-to-b from-white via-blue-50/30 to-cyan-50/40 py-12 sm:py-16 lg:py-20">
+    <section id="how" className="relative bg-gradient-to-b from-white via-blue-50/30 to-cyan-50/40 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Process"
@@ -77,15 +77,15 @@ function HowItWorks() {
 
                 <div className="flex items-start justify-between flex-shrink-0 gap-3">
                   <div className="flex-1 min-w-0">
-                    <div className={`text-xs font-semibold tracking-widest ${idx === 0 ? 'text-cyan-600' : idx === 1 ? 'text-purple-600' : idx === 2 ? 'text-emerald-600' : idx === 3 ? 'text-orange-600' : 'text-pink-600'}`}>STEP {s.k}</div>
-                    <div className="mt-2 text-base sm:text-lg font-semibold text-slate-900 leading-tight">{s.title}</div>
+                    <div className={`text-sm font-semibold tracking-widest ${idx === 0 ? 'text-cyan-600' : idx === 1 ? 'text-purple-600' : idx === 2 ? 'text-emerald-600' : idx === 3 ? 'text-orange-600' : 'text-pink-600'}`}>STEP {s.k}</div>
+                    <div className="mt-2 text-lg sm:text-xl font-semibold text-slate-900 leading-tight">{s.title}</div>
                   </div>
                   <div className={`rounded-2xl border ${idx === 0 ? 'border-cyan-200 bg-gradient-to-br from-cyan-100 to-blue-100' : idx === 1 ? 'border-purple-200 bg-gradient-to-br from-purple-100 to-pink-100' : idx === 2 ? 'border-emerald-200 bg-gradient-to-br from-emerald-100 to-teal-100' : idx === 3 ? 'border-orange-200 bg-gradient-to-br from-orange-100 to-amber-100' : 'border-pink-200 bg-gradient-to-br from-pink-100 to-rose-100'} p-3 shadow-sm flex-shrink-0`}>
                     <s.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${idx === 0 ? 'text-cyan-600' : idx === 1 ? 'text-purple-600' : idx === 2 ? 'text-emerald-600' : idx === 3 ? 'text-orange-600' : 'text-pink-600'}`} />
                   </div>
                 </div>
 
-                <p className="mt-3 text-sm leading-relaxed text-slate-600 flex-grow">{s.desc}</p>
+                <p className="mt-3 text-base leading-relaxed text-slate-600 flex-grow">{s.desc}</p>
 
                 <div className="mt-auto pt-6 h-1.5 w-full overflow-hidden rounded-full bg-slate-100 flex-shrink-0 relative">
                   <motion.div

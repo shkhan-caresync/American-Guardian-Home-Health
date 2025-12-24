@@ -14,9 +14,9 @@ function StatsBand() {
       <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 xl:px-12">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-col">
-            <div className="text-2xl font-semibold tracking-tight text-slate-900">{s.value}</div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500 mt-0.5">{s.label}</div>
-            <div className="mt-1 text-xs text-slate-600">{s.detail}</div>
+            <div className="text-3xl font-semibold tracking-tight text-slate-900">{s.value}</div>
+            <div className="text-sm font-semibold uppercase tracking-wide text-slate-500 mt-0.5">{s.label}</div>
+            <div className="mt-1 text-sm text-slate-600">{s.detail}</div>
           </div>
         ))}
       </div>

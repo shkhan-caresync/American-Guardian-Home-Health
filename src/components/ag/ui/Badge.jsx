@@ -94,10 +94,10 @@ function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClas
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <h3 className="text-base font-semibold tracking-tight text-slate-900">{title}</h3>
+              <h3 className="text-lg font-semibold tracking-tight text-slate-900">{title}</h3>
               <span className={`h-1 w-1 rounded-full ${colors.dotColor}`} style={{ boxShadow: `0 0 0 4px ${colors.dotGlow}` }} />
             </div>
-            <p className="mt-1 text-sm leading-relaxed text-slate-600">{desc}</p>
+            <p className="mt-1 text-base leading-relaxed text-slate-600">{desc}</p>
           </div>
         </div>
       </div>

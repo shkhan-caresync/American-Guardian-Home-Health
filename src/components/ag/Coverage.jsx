@@ -6,7 +6,7 @@ import GlassCard from "./ui/GlassCard";
 
 function Coverage() {
   return (
-    <section id="coverage" className="relative bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/40 py-12 sm:py-16 lg:py-20">
+    <section id="coverage" className="relative bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/40 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(16,185,129,0.08),rgba(34,211,238,0.06),rgba(255,255,255,0)_60%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
@@ -31,14 +31,14 @@ function Coverage() {
               <div className="p-5 sm:p-7 md:p-9">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-slate-900">Agency location</div>
-                    <div className="mt-1 text-sm text-slate-600 leading-relaxed">
+                    <div className="text-base font-semibold text-slate-900">Agency location</div>
+                    <div className="mt-1 text-base text-slate-600 leading-relaxed">
                       9343 Tech Center Dr, Suite 140
                       <br />
                       Sacramento, CA 95826-2579
                     </div>
-                    <div className="mt-4 text-sm font-semibold text-slate-900">Primary region</div>
-                    <div className="mt-1 text-sm text-slate-600 leading-relaxed">Sacramento • Elk Grove • Roseville • Folsom</div>
+                    <div className="mt-4 text-base font-semibold text-slate-900">Primary region</div>
+                    <div className="mt-1 text-base text-slate-600 leading-relaxed">Sacramento • Elk Grove • Roseville • Folsom</div>
                   </div>
                   <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3 flex-shrink-0">
                     <MapPin className="h-6 w-6 text-cyan-500" />
@@ -49,7 +49,7 @@ function Coverage() {
                 {["Start of Care within 24–48 hours (when eligible)", "RN-led plan of care", "Family communication protocols", "Therapy coordination"].map((t) => (
                   <div key={t} className="flex items-start gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                     <CheckCircle2 className="h-4 w-4 text-cyan-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-slate-700 leading-relaxed">{t}</span>
+                    <span className="text-base text-slate-700 leading-relaxed">{t}</span>
                   </div>
                 ))}
               </div>

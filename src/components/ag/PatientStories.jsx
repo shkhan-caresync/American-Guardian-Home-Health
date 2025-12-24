@@ -91,12 +91,12 @@ function PatientStories() {
                   <div className={`inline-flex items-center justify-center rounded-full border ${colors.border} bg-gradient-to-br ${colors.bg} p-2 mb-4`}>
                     <Quote className={`h-5 w-5 ${colors.quote}`} />
                   </div>
-                  <p className="text-sm leading-relaxed text-slate-700 italic">
+                  <p className="text-base leading-relaxed text-slate-700 italic">
                     &ldquo;{story.quote}&rdquo;
                   </p>
                   <div className="mt-5 pt-4 border-t border-slate-200">
-                    <div className="text-xs font-semibold text-slate-900">{story.author}</div>
-                    <div className="mt-1 text-xs text-slate-600">{story.context}</div>
+                    <div className="text-sm font-semibold text-slate-900">{story.author}</div>
+                    <div className="mt-1 text-sm text-slate-600">{story.context}</div>
                   </div>
                 </GlassCard>
               </motion.div>

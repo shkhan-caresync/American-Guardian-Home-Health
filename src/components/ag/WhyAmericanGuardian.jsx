@@ -34,11 +34,11 @@ function WhyAmericanGuardian() {
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white/70 via-white/40 to-transparent" />
               </div>
               <div className="p-6 sm:p-7">
-                <p className="text-sm leading-relaxed text-slate-700">
+                <p className="text-base leading-relaxed text-slate-700">
                   We prioritize coordination between nursing, therapy, physicians, and families—so expectations are clear and care
                   feels calm, professional, and predictable.
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                <p className="mt-3 text-base leading-relaxed text-slate-700">
                   From the first call through discharge from home health, our team stays focused on timely communication, safe
                   visits, and documentation that supports your broader care plan.
                 </p>
@@ -62,21 +62,21 @@ function WhyAmericanGuardian() {
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-b from-transparent to-white/40" />
               </div>
               <div className="p-5 sm:p-6">
-                <div className="grid gap-4 text-xs text-slate-700">
+                <div className="grid gap-4 text-sm text-slate-700">
                   <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm border border-white/60">
-                    <div className="font-semibold text-slate-900">Availability</div>
+                    <div className="text-base font-semibold text-slate-900">Availability</div>
                     <p className="mt-1">
                       Mon–Fri 8am–6pm with after-hours triage support, so urgent questions aren&apos;t left until the next business day.
                     </p>
                   </div>
                   <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm border border-white/60">
-                    <div className="font-semibold text-slate-900">Single coordinated plan</div>
+                    <div className="text-base font-semibold text-slate-900">Single coordinated plan</div>
                     <p className="mt-1">
                       Nursing and therapy work from the same plan of care, aligned with your physician&apos;s orders and goals.
                     </p>
                   </div>
                   <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm border border-white/60">
-                    <div className="font-semibold text-slate-900">Progress updates</div>
+                    <div className="text-base font-semibold text-slate-900">Progress updates</div>
                     <p className="mt-1">
                       Visit notes and status updates are shared with families and providers per consent, so everyone stays on the
                       same page.

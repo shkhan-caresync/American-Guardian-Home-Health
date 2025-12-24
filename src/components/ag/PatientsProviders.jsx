@@ -37,10 +37,10 @@ function PatientsProviders() {
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white/70 via-white/40 to-transparent" />
               </div>
               <div className="p-6 sm:p-7">
-              <h3 className="text-sm font-semibold text-slate-900">For Patients & Families</h3>
-              <div className="mt-4 text-xs text-slate-700 space-y-3">
+              <h3 className="text-lg font-semibold text-slate-900">For Patients & Families</h3>
+              <div className="mt-4 text-base text-slate-700 space-y-3">
                 <div>
-                  <div className="font-semibold text-slate-900">What to expect</div>
+                  <div className="text-base font-semibold text-slate-900">What to expect</div>
                   <ul className="mt-2 space-y-1 list-disc pl-4">
                     <li>Referral or physician orders may be required depending on your situation.</li>
                     <li>Visit frequency is based on the clinician-led plan of care and how your needs change over time.</li>
@@ -49,7 +49,7 @@ function PatientsProviders() {
                   </ul>
                 </div>
                 <div>
-                  <div className="mt-4 font-semibold text-slate-900">What to prepare</div>
+                  <div className="mt-4 text-base font-semibold text-slate-900">What to prepare</div>
                   <ul className="mt-2 space-y-1 list-disc pl-4">
                     <li>Insurance card</li>
                     <li>Current medication list</li>
@@ -88,10 +88,10 @@ function PatientsProviders() {
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white/70 via-white/40 to-transparent" />
               </div>
               <div className="p-6 sm:p-7">
-              <h3 className="text-sm font-semibold text-slate-900">For Referring Providers</h3>
-              <div className="mt-4 text-xs text-slate-700 space-y-3">
+              <h3 className="text-lg font-semibold text-slate-900">For Referring Providers</h3>
+              <div className="mt-4 text-base text-slate-700 space-y-3">
                 <div>
-                  <div className="font-semibold text-slate-900">Referral checklist</div>
+                  <div className="text-base font-semibold text-slate-900">Referral checklist</div>
                   <ul className="mt-2 space-y-1 list-disc pl-4">
                     <li>Patient demographics and contact information</li>
                     <li>Orders and recent clinical notes, as applicable</li>
@@ -100,7 +100,7 @@ function PatientsProviders() {
                   </ul>
                 </div>
                 <div>
-                  <div className="mt-4 font-semibold text-slate-900">How we communicate</div>
+                  <div className="mt-4 text-base font-semibold text-slate-900">How we communicate</div>
                   <p className="mt-2">
                     We align around your orders, confirm start of care, and provide ongoing updates on progress and concerns per
                     patient consent.

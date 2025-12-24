@@ -37,7 +37,7 @@ function Hero() {
   return (
     <section
       onMouseMove={onMove}
-      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-24 sm:pt-28 md:pt-32 lg:pt-36"
+      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-28 sm:pt-32 md:pt-36 lg:pt-40"
     >
       <ParticleField className="opacity-50" />
       <GlowBlob className="-left-28 top-32 h-[520px] w-[520px]" delay={0.2} />
@@ -78,7 +78,7 @@ function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.9, ease: "easeOut" }}
-              className="mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-600"
+              className="mt-3 sm:mt-4 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-600"
             >
               <AnimatedUnderline /> delivers coordinated nursing, therapy, and support—
               designed around your loved one’s goals, schedule, and safety.

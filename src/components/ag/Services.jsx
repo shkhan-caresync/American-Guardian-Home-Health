@@ -36,7 +36,7 @@ function Services() {
   ];
 
   return (
-    <section id="services" className="relative bg-gradient-to-b from-indigo-50/40 via-white to-purple-50/30 py-12 sm:py-16 lg:py-20">
+    <section id="services" className="relative bg-gradient-to-b from-indigo-50/40 via-white to-purple-50/30 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.08),rgba(59,130,246,0.06),rgba(255,255,255,0)_60%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
@@ -65,10 +65,10 @@ function Services() {
         {/* Specialty Focus Areas - Centered */}
         <div className="mt-12 max-w-4xl mx-auto">
           <div className="text-center">
-            <h3 className="text-sm font-semibold text-slate-900 tracking-tight">
+            <h3 className="text-base font-semibold text-slate-900 tracking-tight">
               Specialty Focus Areas
             </h3>
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-2 text-base text-slate-600">
               Within skilled home health, we pay particular attention to common higher‑risk needs.
             </p>
           </div>
@@ -106,10 +106,10 @@ function Services() {
                     <div className="text-[10px] font-semibold tracking-[0.18em] uppercase text-slate-500">
                       Specialty care
                     </div>
-                    <div className="mt-1 text-sm font-semibold text-slate-900 group-hover:text-slate-950 transition-colors">
+                    <div className="mt-1 text-base font-semibold text-slate-900 group-hover:text-slate-950 transition-colors">
                       {item.title}
                     </div>
-                    <p className="mt-2 text-xs lg:text-[13px] leading-relaxed text-slate-600">
+                    <p className="mt-2 text-sm lg:text-base leading-relaxed text-slate-600">
                       {item.desc}
                     </p>
                   </div>
