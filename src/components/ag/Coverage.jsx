@@ -3,10 +3,21 @@ import { motion } from "framer-motion";
 import { BadgeCheck, CheckCircle2, Clock, MapPin, Shield } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig } from "../../lib/motion";
 
 function Coverage() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+
   return (
-    <section id="coverage" className="relative bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/40 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+    <motion.section
+      id="coverage"
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/40 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32"
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(16,185,129,0.08),rgba(34,211,238,0.06),rgba(255,255,255,0)_60%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
@@ -159,7 +170,7 @@ function Coverage() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

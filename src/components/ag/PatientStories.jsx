@@ -4,8 +4,12 @@ import { Quote } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
 import GlowBlob from "./ui/GlowBlob";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, cardHover } from "../../lib/motion";
 
 function PatientStories() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+  const hoverVariants = cardHover(reducedMotion);
   const stories = [
     {
       quote: "After my father's hip surgery, we were worried about managing his recovery at home. The team from American Guardian made everything so much easier. The nurse came regularly to check his wound, and the physical therapist helped him regain his strength safely. We felt supported every step of the way.",
@@ -55,7 +59,14 @@ function PatientStories() {
   };
 
   return (
-    <section id="stories" className="relative bg-transparent py-12 sm:py-16 lg:py-20">
+    <motion.section
+      id="stories"
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-transparent py-12 sm:py-16 lg:py-20"
+    >
       <GlowBlob className="-left-24 top-10 h-72 w-72 opacity-70" delay={0.15} />
       <GlowBlob className="right-0 bottom-0 h-80 w-80 opacity-60" delay={0.5} />
       
@@ -76,18 +87,24 @@ function PatientStories() {
           desc="We regularly hear from families and providers about how home health has supported recovery and confidence at home."
         />
 
-        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          variants={staggerContainer(reducedMotion)}
+          className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        >
           {stories.map((story, idx) => {
             const colors = colorClasses[story.color] || colorClasses.cyan;
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ delay: idx * 0.08, duration: 0.7, ease: "easeOut" }}
+                variants={fadeUp(reducedMotion)}
+                viewport={viewportConfig}
               >
-                <GlassCard className="h-full p-6 sm:p-7">
+                <motion.div
+                  variants={hoverVariants}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  <GlassCard className="h-full p-6 sm:p-7">
                   <div className={`inline-flex items-center justify-center rounded-full border ${colors.border} bg-gradient-to-br ${colors.bg} p-2 mb-4`}>
                     <Quote className={`h-5 w-5 ${colors.quote}`} />
                   </div>
@@ -99,12 +116,13 @@ function PatientStories() {
                     <div className="mt-1 text-sm text-slate-600">{story.context}</div>
                   </div>
                 </GlassCard>
+                </motion.div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

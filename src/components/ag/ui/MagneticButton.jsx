@@ -2,15 +2,19 @@ import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "../../../utils/cn";
+import { useReducedMotionFlag, buttonPress } from "../../../lib/motion";
 
 function MagneticButton({ children, className, onClick }) {
+  const reducedMotion = useReducedMotionFlag();
   const ref = useRef(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 260, damping: 18 });
   const sy = useSpring(my, { stiffness: 260, damping: 18 });
+  const buttonVariants = buttonPress(reducedMotion);
 
   const handleMove = (e) => {
+    if (reducedMotion) return;
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -31,7 +35,11 @@ function MagneticButton({ children, className, onClick }) {
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       onClick={onClick}
-      style={{ x: sx, y: sy }}
+      style={{ x: reducedMotion ? 0 : sx, y: reducedMotion ? 0 : sy }}
+      variants={buttonVariants}
+      initial="rest"
+      whileHover="hover"
+      whileTap="tap"
       className={cn(
         "group relative inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold",
         "bg-cyan-500 text-white shadow-lg shadow-cyan-500/30 hover:bg-cyan-600",

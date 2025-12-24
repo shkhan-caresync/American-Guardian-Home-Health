@@ -3,10 +3,21 @@ import { motion } from "framer-motion";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
 import GlowBlob from "./ui/GlowBlob";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig } from "../../lib/motion";
 
 function WhyAmericanGuardian() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+
   return (
-    <section id="why" className="relative bg-transparent py-12 sm:py-16 lg:py-20 overflow-hidden">
+    <motion.section
+      id="why"
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-transparent py-12 sm:py-16 lg:py-20 overflow-hidden"
+    >
       <GlowBlob className="-left-32 top-10 h-80 w-80 opacity-70" delay={0.1} />
       <GlowBlob className="right-0 bottom-0 h-80 w-80 opacity-60" delay={0.4} />
 
@@ -17,12 +28,13 @@ function WhyAmericanGuardian() {
           desc="American Guardian Home Health delivers clinician-led care plans designed around safety, clarity, and reliability. Our focus is helping patients recover and manage conditions at home with confidence."
         />
 
-        <div className="mt-8 sm:mt-10 grid gap-6 lg:grid-cols-2">
+        <motion.div
+          variants={staggerContainer(reducedMotion)}
+          className="mt-8 sm:mt-10 grid gap-6 lg:grid-cols-2"
+        >
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            variants={fadeUp(reducedMotion)}
+            viewport={viewportConfig}
           >
             <GlassCard className="h-full p-0 overflow-hidden">
               <div className="relative h-64 sm:h-80 w-full">
@@ -47,10 +59,8 @@ function WhyAmericanGuardian() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
+            variants={fadeUp(reducedMotion)}
+            viewport={viewportConfig}
           >
             <GlassCard className="h-full p-0 overflow-hidden">
               <div className="relative h-56 sm:h-72 w-full">
@@ -86,9 +96,9 @@ function WhyAmericanGuardian() {
               </div>
             </GlassCard>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

@@ -1,13 +1,26 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, Clock, PhoneCall, Shield } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
 import MagneticButton from "./ui/MagneticButton";
 import { LOGO_SRC } from "../../config/brand";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, buttonPress } from "../../lib/motion";
 
 function Contact() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+  const buttonVariants = buttonPress(reducedMotion);
+
   return (
-    <section id="contact" className="relative bg-gradient-to-b from-orange-50/30 via-white to-amber-50/30 pt-12 sm:pt-16 lg:pt-20 pb-0 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+    <motion.section
+      id="contact"
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-gradient-to-b from-orange-50/30 via-white to-amber-50/30 pt-12 sm:pt-16 lg:pt-20 pb-0 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32"
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.08),rgba(251,191,36,0.06),rgba(255,255,255,0)_60%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
@@ -22,28 +35,36 @@ function Contact() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2">
                   <span className="text-base font-medium text-slate-700">Full name</span>
-                  <input
+                  <motion.input
+                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
                     placeholder="Full name of patient or contact person"
                   />
                 </label>
                 <label className="grid gap-2">
                   <span className="text-base font-medium text-slate-700">Phone</span>
-                  <input
+                  <motion.input
+                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
                     placeholder="Best phone number for follow-up"
                   />
                 </label>
                 <label className="grid gap-2 sm:col-span-2">
                   <span className="text-base font-medium text-slate-700">Email</span>
-                  <input
+                  <motion.input
+                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
                     placeholder="Email for visit confirmations (optional)"
                   />
                 </label>
                 <label className="grid gap-2 sm:col-span-2">
                   <span className="text-base font-medium text-slate-700">How can we help?</span>
-                  <textarea
+                  <motion.textarea
+                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     rows={4}
                     className="rounded-2xl border border-slate-200 bg-white p-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
                     placeholder="Who is the patient, what support do they need, and what city are they located in?"
@@ -302,7 +323,7 @@ function Contact() {
           </div>
         </div>
       </footer>
-    </section>
+    </motion.section>
   );
 }
 

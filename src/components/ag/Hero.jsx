@@ -1,11 +1,12 @@
-import React from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { ArrowRight, Shield } from "lucide-react";
 import ParticleField from "./ui/ParticleField";
 import GlowBlob from "./ui/GlowBlob";
 import GlassCard from "./ui/GlassCard";
 import MagneticButton from "./ui/MagneticButton";
 import ScrollHint from "./ui/ScrollHint";
+import { useReducedMotionFlag, fadeUp, scaleIn, staggerContainer, premiumEase } from "../../lib/motion";
 
 function AnimatedUnderline() {
   return (
@@ -17,20 +18,33 @@ function AnimatedUnderline() {
 }
 
 function Hero() {
+  const reducedMotion = useReducedMotionFlag();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const imageRef = useRef(null);
+  const { scrollY } = useScroll();
 
   const rotateX = useTransform(mouseY, [-200, 200], [8, -8]);
   const rotateY = useTransform(mouseX, [-200, 200], [-10, 10]);
   const rx = useSpring(rotateX, { stiffness: 120, damping: 18 });
   const ry = useSpring(rotateY, { stiffness: 120, damping: 18 });
 
+  // Subtle parallax for image (only if reduced motion is false)
+  const imageY = useTransform(
+    scrollY,
+    [0, 500],
+    [0, reducedMotion ? 0 : 12]
+  );
+
   const onMove = (e) => {
+    if (reducedMotion) return;
     const cx = window.innerWidth / 2;
     const cy = window.innerHeight / 2;
     mouseX.set(e.clientX - cx);
     mouseY.set(e.clientY - cy);
   };
+
+  const containerVariants = staggerContainer(reducedMotion);
 
   return (
     <section
@@ -43,13 +57,16 @@ function Hero() {
 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.10),rgba(168,85,247,0.06),rgba(255,255,255,0)_60%)]" />
 
-      <div className="relative w-full flex-1 flex flex-col justify-center pb-8 sm:pb-10 lg:pb-12">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="relative w-full flex-1 flex flex-col justify-center pb-8 sm:pb-10 lg:pb-12"
+      >
         <div className="grid items-stretch gap-4 sm:gap-5 lg:gap-6 lg:grid-cols-12">
           <div className="lg:col-span-7 pl-4 sm:pl-6 md:pl-8 lg:pl-10 xl:pl-12 pr-4 sm:pr-6 lg:pr-3">
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              variants={fadeUp(reducedMotion)}
               className="inline-flex items-center gap-1.5 rounded-full border border-cyan-200/40 bg-cyan-50/40 px-3 py-1 text-[11px] font-normal text-slate-600 backdrop-blur"
             >
               <Shield className="h-3 w-3 text-cyan-500" />
@@ -57,9 +74,7 @@ function Hero() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05, duration: 0.9, ease: "easeOut" }}
+              variants={fadeUp(reducedMotion)}
               className="mt-3 sm:mt-4 md:mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent"
             >
               Home health that feels
@@ -69,9 +84,7 @@ function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.9, ease: "easeOut" }}
+              variants={fadeUp(reducedMotion)}
               className="mt-3 sm:mt-4 text-base sm:text-lg leading-relaxed text-slate-500"
             >
               <AnimatedUnderline /> delivers coordinated nursing, therapy, and support—
@@ -79,9 +92,7 @@ function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.18, duration: 0.9, ease: "easeOut" }}
+              variants={fadeUp(reducedMotion)}
               className="mt-5 sm:mt-6 md:mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <MagneticButton className="px-6 py-3.5 text-sm sm:text-base min-h-[44px]" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
@@ -98,9 +109,7 @@ function Hero() {
 
             {/* Trust cues - compact and quiet */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.8, ease: "easeOut" }}
+              variants={fadeUp(reducedMotion)}
               className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500"
             >
               <div className="flex items-center gap-1.5">
@@ -121,9 +130,18 @@ function Hero() {
             <ScrollHint />
           </div>
 
-          <div className="lg:col-span-5 pl-4 sm:pl-6 md:pl-8 lg:pl-3 pr-4 sm:pr-6 md:pr-8 lg:pr-10 xl:pr-12 flex">
+          <motion.div
+            variants={scaleIn(reducedMotion)}
+            className="lg:col-span-5 pl-4 sm:pl-6 md:pl-8 lg:pl-3 pr-4 sm:pr-6 md:pr-8 lg:pr-10 xl:pr-12 flex"
+          >
             <motion.div
-              style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
+              ref={imageRef}
+              style={{
+                rotateX: reducedMotion ? 0 : rx,
+                rotateY: reducedMotion ? 0 : ry,
+                y: imageY,
+                transformStyle: "preserve-3d",
+              }}
               className="relative w-full flex-1"
             >
               <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_0%,rgba(51,211,213,0.22),rgba(0,0,0,0)_60%)] blur-2xl" />
@@ -148,9 +166,9 @@ function Hero() {
               </GlassCard>
 
             </motion.div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent mt-auto" />
     </section>

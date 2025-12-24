@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { PhoneCall } from "lucide-react";
 import MagneticButton from "./ui/MagneticButton";
 import { LOGO_SRC } from "../../config/brand";
+import { useReducedMotionFlag, premiumEase } from "../../lib/motion";
 
 function Nav() {
+  const reducedMotion = useReducedMotionFlag();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("#services");
@@ -12,10 +15,6 @@ function Nav() {
   const [hoverHref, setHoverHref] = useState(null);
   const [indicatorReady, setIndicatorReady] = useState(false);
 
-  const prefersReducedMotion = useMemo(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -134,12 +133,21 @@ function Nav() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 w-full">
       {/* Combined nav container for seamless blend */}
-      <div className={[
-        "backdrop-blur-xl transition-all duration-300",
-        scrolled
-          ? "bg-gradient-to-b from-cyan-50/40 via-white/35 to-indigo-50/30 shadow-[0_8px_30px_-15px_rgba(15,23,42,0.15)]"
-          : "bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 shadow-none",
-      ].join(" ")}>
+      <motion.div
+        animate={{
+          background: scrolled
+            ? "linear-gradient(to bottom, rgba(207, 250, 254, 0.4), rgba(255, 255, 255, 0.35), rgba(224, 231, 255, 0.3))"
+            : "linear-gradient(to bottom, rgba(207, 250, 254, 0.5), rgba(255, 255, 255, 1), rgba(224, 231, 255, 0.3))",
+          boxShadow: scrolled
+            ? "0 8px 30px -15px rgba(15, 23, 42, 0.15)"
+            : "none",
+        }}
+        transition={{
+          duration: reducedMotion ? 0 : 0.3,
+          ease: premiumEase,
+        }}
+        className="backdrop-blur-xl"
+      >
         {/* Announcement strip - seamless blend */}
         <div className="hidden sm:block">
           <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
@@ -156,7 +164,15 @@ function Nav() {
           <div className="relative flex w-full items-center justify-between py-4 sm:py-5 lg:py-6">
             {/* Left: Brand */}
             <div className="flex items-center">
-              <a href="#" className="flex items-center gap-2 sm:gap-3">
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  setActive("");
+                }}
+                className="flex items-center gap-2 sm:gap-3"
+              >
                 <div className={[
                   "relative grid h-12 w-12 place-items-center overflow-hidden rounded-xl shadow-sm transition-all sm:h-14 sm:w-14 backdrop-blur-sm",
                   scrolled
@@ -217,13 +233,15 @@ function Nav() {
                   {nav.map((item) => {
                     const isActive = active === item.href;
                     return (
-                      <a
+                      <motion.a
                         key={item.href}
                         href={item.href}
                         data-href={item.href}
                         onClick={(e) => handleNavClick(e, item.href)}
                         onMouseEnter={() => setHoverHref(item.href)}
                         onMouseLeave={() => setHoverHref(null)}
+                        whileHover={{ y: reducedMotion ? 0 : -1 }}
+                        transition={{ duration: 0.2, ease: premiumEase }}
                         className={[
                           "relative py-2 text-sm font-medium tracking-[0.01em] transition-colors",
                           scrolled
@@ -232,7 +250,7 @@ function Nav() {
                         ].join(" ")}
                       >
                         {item.label}
-                      </a>
+                      </motion.a>
                     );
                   })}
 
@@ -247,10 +265,10 @@ function Nav() {
                       width: 0,
                       transform: "translateX(0px)",
                       transitionProperty: "transform,width,background-color,opacity",
-                      transitionDuration: prefersReducedMotion ? "0ms" : "360ms",
-                      transitionTimingFunction: prefersReducedMotion
+                      transitionDuration: reducedMotion ? "0ms" : "360ms",
+                      transitionTimingFunction: reducedMotion
                         ? "linear"
-                        : "cubic-bezier(0.16, 1, 0.3, 1)",
+                        : `cubic-bezier(${premiumEase.join(", ")})`,
                       backgroundColor: scrolled ? "rgb(6, 182, 212)" : "rgb(8, 145, 178)",
                     }}
                   />
@@ -354,7 +372,7 @@ function Nav() {
             </div>
           </div>
         ) : null}
-      </div>
+      </motion.div>
     </nav>
   );
 }

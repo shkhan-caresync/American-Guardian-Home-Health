@@ -3,8 +3,12 @@ import { motion } from "framer-motion";
 import { ClipboardCheck, HeartPulse, PhoneCall } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, cardHover } from "../../lib/motion";
 
 function HowItWorks() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+  const hoverVariants = cardHover(reducedMotion);
   const steps = [
     {
       k: "01",
@@ -44,7 +48,14 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="relative bg-gradient-to-b from-white via-blue-50/30 to-cyan-50/40 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+    <motion.section
+      id="how"
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-gradient-to-b from-white via-blue-50/30 to-cyan-50/40 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32"
+    >
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Process"
@@ -52,14 +63,15 @@ function HowItWorks() {
           desc="A smooth, professional intake—then consistent, coordinated care."
         />
 
-        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-5 lg:grid-cols-3">
+        <motion.div
+          variants={staggerContainer(reducedMotion)}
+          className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-5 lg:grid-cols-3"
+        >
           {steps.map((s, idx) => (
             <motion.div
               key={s.k}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: idx * 0.08, duration: 0.7, ease: "easeOut" }}
+              variants={fadeUp(reducedMotion)}
+              viewport={viewportConfig}
               className="h-full"
             >
               <GlassCard className="h-full p-6 flex flex-col">
@@ -99,13 +111,13 @@ function HowItWorks() {
               </GlassCard>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <p className="mt-10 text-xs text-slate-600">
           Providers receive timely start-of-care and progress updates per patient consent.
         </p>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

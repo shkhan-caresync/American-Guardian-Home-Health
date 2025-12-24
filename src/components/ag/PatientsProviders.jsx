@@ -4,10 +4,20 @@ import SectionTitle from "./ui/SectionTitle";
 import MagneticButton from "./ui/MagneticButton";
 import GlassCard from "./ui/GlassCard";
 import GlowBlob from "./ui/GlowBlob";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig } from "../../lib/motion";
 
 function PatientsProviders() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+
   return (
-    <section className="relative bg-transparent py-12 sm:py-16 lg:py-20">
+    <motion.section
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-transparent py-12 sm:py-16 lg:py-20"
+    >
       <GlowBlob className="-right-32 top-10 h-80 w-80 opacity-70" delay={0.2} />
       <GlowBlob className="-left-24 bottom-0 h-72 w-72 opacity-60" delay={0.5} />
 
@@ -18,14 +28,15 @@ function PatientsProviders() {
           desc="Whether you&apos;re a family member exploring home health or a clinician planning a referral, we aim to make the next steps clear."
         />
 
-        <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 lg:grid-cols-2">
+        <motion.div
+          variants={staggerContainer(reducedMotion)}
+          className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 lg:grid-cols-2"
+        >
           {/* For Patients */}
           <motion.div
             id="patients"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            variants={fadeUp(reducedMotion)}
+            viewport={viewportConfig}
           >
             <GlassCard className="h-full p-0 overflow-hidden">
               <div className="relative h-60 sm:h-72 w-full">
@@ -73,10 +84,8 @@ function PatientsProviders() {
           {/* For Providers */}
           <motion.div
             id="providers"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
+            variants={fadeUp(reducedMotion)}
+            viewport={viewportConfig}
           >
             <GlassCard className="h-full p-0 overflow-hidden">
               <div className="relative h-60 sm:h-72 w-full">
@@ -110,9 +119,9 @@ function PatientsProviders() {
               </div>
             </GlassCard>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

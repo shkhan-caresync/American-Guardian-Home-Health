@@ -3,8 +3,12 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Shield, ArrowRight } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, cardHover, premiumEase } from "../../lib/motion";
 
 function Team() {
+  const reducedMotion = useReducedMotionFlag();
+  const containerVariants = staggerContainer(reducedMotion);
+  const hoverVariants = cardHover(reducedMotion);
   const people = [
     {
       name: "Clinical Director (RN, DPCS)",
@@ -57,7 +61,14 @@ function Team() {
   ];
 
   return (
-    <section id="team" className="relative bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+    <motion.section
+      id="team"
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="relative bg-gradient-to-b from-white via-purple-50/30 to-pink-50/30 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32"
+    >
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <SectionTitle
           kicker="Care Team"
@@ -65,7 +76,10 @@ function Team() {
           desc="A small, coordinated team of nurses, therapists, and care coordinators focused on safe, timely, in‑home care."
         />
 
-        <div className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          variants={staggerContainer(reducedMotion)}
+          className="mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {people.map((p, idx) => {
             const colorClasses = {
               cyan: { border: 'border-cyan-200', bg: 'from-cyan-100 to-blue-100', text: 'text-cyan-700', icon: 'text-cyan-500', check: 'text-cyan-500' },
@@ -81,12 +95,16 @@ function Team() {
             return (
               <motion.div
                 key={p.name}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ delay: idx * 0.06, duration: 0.7, ease: "easeOut" }}
+                variants={fadeUp(reducedMotion)}
+                viewport={viewportConfig}
               >
-                <GlassCard className="h-full p-6">
+                <motion.div
+                  variants={hoverVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  className="h-full"
+                >
+                  <GlassCard className="h-full p-6">
                   <div className="relative">
                     {/* Team Member Image or Icon */}
                     {p.image ? (
@@ -124,33 +142,35 @@ function Team() {
                     </div>
                   </div>
                 </GlassCard>
+                </motion.div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA to Patient Stories */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
+          variants={fadeUp(reducedMotion)}
+          viewport={viewportConfig}
           className="mt-12 text-center"
         >
-          <a
+          <motion.a
             href="#stories"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("stories")?.scrollIntoView({ behavior: "smooth" });
             }}
+            whileHover={{ scale: reducedMotion ? 1 : 1.02, y: reducedMotion ? 0 : -1 }}
+            whileTap={{ scale: reducedMotion ? 1 : 0.98 }}
+            transition={{ duration: 0.2, ease: premiumEase }}
             className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 px-6 py-3 text-sm font-semibold text-purple-700 shadow-sm transition hover:from-purple-100 hover:to-pink-100 hover:border-purple-300 min-h-[44px]"
           >
             Read patient stories
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+            <motion.span whileHover={{ x: reducedMotion ? 0 : 2 }} transition={{ duration: 0.2 }}><ArrowRight className="h-4 w-4" /></motion.span>
+          </motion.a>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
