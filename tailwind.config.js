@@ -23,6 +23,12 @@ export default {
         'cofo': ['cofo-raffine', 'sans-serif'],
         'hitch': ['hitch-route-serif', 'Hitch Route Serif', 'serif'],
         'october': ['october-dreams', 'October Dreams', 'cursive'],
+        'montserrat': ['montserrat', 'sans-serif'],
+        'poppins': ['poppins', 'sans-serif'],
+        'space-grotesk': ['space-grotesk-variable', 'sans-serif'],
+        'outfit': ['outfit', 'sans-serif'],
+        'new-astro': ['new-astro', 'sans-serif'],
+        'new-astro-soft': ['new-astro-soft', 'sans-serif'],
       }
     },
   },

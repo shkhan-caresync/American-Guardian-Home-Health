@@ -185,8 +185,9 @@ function Nav() {
                 </div>
                 <div className="leading-tight">
                   <div 
-                    className="text-lg sm:text-xl md:text-2xl tracking-tight bg-clip-text text-transparent drop-shadow-sm"
+                    className="text-xl sm:text-2xl md:text-3xl tracking-tight bg-clip-text text-transparent drop-shadow-sm"
                     style={{ 
+                      fontFamily: '"new-astro", sans-serif',
                       fontWeight: 700,
                       backgroundImage: 'linear-gradient(to right, #364f6b, #3fc1c9, #364f6b)',
                       WebkitBackgroundClip: 'text',
@@ -195,8 +196,9 @@ function Nav() {
                     American Guardian
                   </div>
                   <div 
-                    className="text-xs sm:text-sm tracking-wide bg-clip-text text-transparent"
+                    className="text-sm sm:text-base tracking-wide bg-clip-text text-transparent"
                     style={{ 
+                      fontFamily: '"new-astro", sans-serif',
                       fontWeight: 600,
                       backgroundImage: 'linear-gradient(to right, #364f6b, #3fc1c9)',
                       WebkitBackgroundClip: 'text',
