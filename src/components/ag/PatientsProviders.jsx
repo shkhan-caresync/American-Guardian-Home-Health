@@ -5,6 +5,7 @@ import MagneticButton from "./ui/MagneticButton";
 import GlassCard from "./ui/GlassCard";
 import GlowBlob from "./ui/GlowBlob";
 import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig } from "../../lib/motion";
+import { scrollToSection } from "../../lib/scroll";
 
 function PatientsProviders() {
   const reducedMotion = useReducedMotionFlag();
@@ -16,7 +17,7 @@ function PatientsProviders() {
       whileInView="show"
       viewport={viewportConfig}
       variants={containerVariants}
-      className="relative bg-transparent py-12 sm:py-16 lg:py-20"
+      className="relative bg-transparent py-12 sm:py-16 lg:py-20 scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 lg:scroll-mt-32"
     >
       <GlowBlob className="-right-32 top-10 h-80 w-80 opacity-70" delay={0.2} />
       <GlowBlob className="-left-24 bottom-0 h-72 w-72 opacity-60" delay={0.5} />
@@ -72,7 +73,7 @@ function PatientsProviders() {
               <div className="mt-5">
                 <MagneticButton
                   className="px-5 py-2.5 text-sm font-semibold min-h-[44px] w-full sm:w-auto"
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={() => scrollToSection("contact")}
                 >
                   Request care
                 </MagneticButton>

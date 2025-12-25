@@ -119,10 +119,10 @@ function Contact() {
                   </div>
                   <a
                     href="mailto:intake@americanguardianhomehealth.com"
-                    className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100 hover:border-cyan-200 transition min-h-[44px]"
+                    className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100 hover:border-cyan-200 transition min-h-[44px] min-w-0"
                   >
-                    <span className="break-all pr-2">intake@americanguardianhomehealth.com</span>
-                    <ArrowRight className="h-4 w-4 flex-shrink-0" />
+                    <span className="break-all pr-2 min-w-0 flex-1">intake@americanguardianhomehealth.com</span>
+                    <ArrowRight className="h-4 w-4 flex-shrink-0 ml-2" />
                   </a>
                 </div>
 
@@ -170,9 +170,9 @@ function Contact() {
 
             {/* Top grid area */}
             <div className="px-4 py-7 sm:px-6 sm:py-8 lg:px-8">
-              <div className="grid gap-y-7 gap-x-8 text-sm text-slate-600 md:grid-cols-2 lg:grid-cols-12 lg:items-start">
+              <div className="grid gap-y-7 gap-x-8 text-sm text-slate-600 grid-cols-1 md:grid-cols-2 xl:grid-cols-12 xl:items-start">
                 {/* Brand column */}
-                <div className="lg:col-span-5 space-y-3 min-w-0">
+                <div className="xl:col-span-5 space-y-3 min-w-0">
                     <div className="flex items-start gap-2 sm:gap-3">
                       <div className={[
                         "relative grid h-12 w-12 place-items-center overflow-hidden rounded-xl shadow-sm transition-all sm:h-14 sm:w-14 backdrop-blur-sm",
@@ -221,7 +221,7 @@ function Contact() {
                           }}>
                           Home Health
                         </div>
-                        <div className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <div className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed break-words">
                           Serving Sacramento County • Placer County • Contra Costa County • Stanislaus County • and surrounding counties
                         </div>
                         <p className="mt-1 text-xs sm:text-sm lg:text-[13px] lg:leading-6 leading-relaxed text-slate-600">
@@ -232,7 +232,7 @@ function Contact() {
                   </div>
 
                   {/* Services */}
-                  <div className="lg:col-span-2">
+                  <div className="xl:col-span-2 min-w-0">
                     <div className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500">Services</div>
                     <ul className="mt-3 space-y-2 text-sm lg:text-[13px]">
                       <li>
@@ -271,7 +271,7 @@ function Contact() {
                   </div>
 
                 {/* Care Team & Guides */}
-                <div className="lg:col-span-2">
+                <div className="xl:col-span-2 min-w-0">
                   <div className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500">Care Team &amp; Guides</div>
                   <ul className="mt-3 space-y-2 text-sm lg:text-[13px]">
                     <li>
@@ -310,25 +310,25 @@ function Contact() {
                 </div>
 
                 {/* Contact */}
-                <div className="lg:col-span-3">
+                <div className="xl:col-span-3 min-w-0">
                   <div className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-500">Contact</div>
 
                   <div className="mt-3 space-y-2 text-sm lg:text-[13px] leading-relaxed text-slate-600">
-                    <p>
+                    <p className="min-w-0">
                       Phone:{" "}
                       <a
                         href="tel:+19165733231"
-                        className="relative inline-flex items-center font-medium text-slate-700 hover:text-slate-900 transition-colors transition-transform hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                        className="relative inline-flex items-center font-medium text-slate-700 hover:text-slate-900 break-words transition-colors transition-transform hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                       >
                         +1 (916) 573-3231
                       </a>
                     </p>
 
-                    <p className="min-w-0">
+                    <p className="min-w-0 break-words">
                       Email:{" "}
                       <a
                         href="mailto:intake@americanguardianhomehealth.com"
-                        className="relative inline-flex items-center font-medium text-slate-700 hover:text-slate-900 break-words transition-colors transition-transform hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
+                        className="relative inline-flex items-center font-medium text-slate-700 hover:text-slate-900 break-all transition-colors transition-transform hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                       >
                         intake@americanguardianhomehealth.com
                       </a>

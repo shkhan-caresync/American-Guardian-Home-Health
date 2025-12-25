@@ -16,7 +16,7 @@ function WhyAmericanGuardian() {
       whileInView="show"
       viewport={viewportConfig}
       variants={containerVariants}
-      className="relative bg-transparent py-12 sm:py-16 lg:py-20 overflow-hidden"
+      className="relative bg-transparent py-12 sm:py-16 lg:py-20 overflow-hidden scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 lg:scroll-mt-32"
     >
       <GlowBlob className="-left-32 top-10 h-80 w-80 opacity-70" delay={0.1} />
       <GlowBlob className="right-0 bottom-0 h-80 w-80 opacity-60" delay={0.4} />

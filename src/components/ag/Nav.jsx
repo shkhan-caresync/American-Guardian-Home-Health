@@ -4,6 +4,7 @@ import { PhoneCall } from "lucide-react";
 import MagneticButton from "./ui/MagneticButton";
 import { LOGO_SRC } from "../../config/brand";
 import { useReducedMotionFlag, premiumEase } from "../../lib/motion";
+import { scrollToSection } from "../../lib/scroll";
 
 function Nav() {
   const reducedMotion = useReducedMotionFlag();
@@ -31,23 +32,12 @@ function Nav() {
     { label: "Contact", href: "#contact" },
   ];
 
-  // Handle smooth scroll with nav offset
+  // Handle smooth scroll with nav offset using centralized utility
   const handleNavClick = (e, href) => {
     e.preventDefault();
     const targetId = href.replace("#", "");
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const navElement = document.querySelector("nav");
-      const navHeight = navElement ? navElement.offsetHeight : 120; // fallback to ~120px
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = targetPosition - navHeight + 24; // Reduced offset - section appears lower
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      setActive(href);
-    }
+    scrollToSection(targetId, { offset: 8 }); // Small additional offset for visual spacing
+    setActive(href);
   };
 
   // Track active section via IntersectionObserver
@@ -141,7 +131,7 @@ function Nav() {
       ].join(" ")}>
         {/* Announcement strip - seamless blend */}
         <div className="hidden sm:block">
-          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
             <div className="flex w-full items-center justify-center py-2 sm:py-2.5">
               <p className="truncate text-[11px] sm:text-xs text-slate-700/75">
                 Licensed home health agency • Serving Sacramento County, Placer County, Contra Costa County, Stanislaus County & surrounding counties
@@ -151,10 +141,10 @@ function Nav() {
         </div>
 
         {/* Main nav bar - seamless continuation */}
-        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="relative flex w-full items-center justify-between py-4 sm:py-5 lg:py-6">
-            {/* Left: Brand */}
-            <div className="flex items-center">
+        <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+          <div className="relative flex w-full items-center justify-between gap-2 sm:gap-3 md:gap-4 py-3 sm:py-4 md:py-4 lg:py-5 xl:py-6">
+            {/* Left: Brand - responsive sizing */}
+            <div className="flex items-center flex-shrink-0 min-w-0">
               <a 
                 href="#"
                 onClick={(e) => {
@@ -162,10 +152,10 @@ function Nav() {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                   setActive("");
                 }}
-                className="flex items-center gap-2 sm:gap-3"
+                className="flex items-center gap-1.5 sm:gap-2 md:gap-3 min-w-0"
               >
                 <div className={[
-                  "relative grid h-12 w-12 place-items-center overflow-hidden rounded-xl shadow-sm transition-all sm:h-14 sm:w-14 backdrop-blur-sm",
+                  "relative grid h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 place-items-center overflow-hidden rounded-xl shadow-sm transition-all backdrop-blur-sm flex-shrink-0",
                   scrolled
                     ? "bg-white/60"
                     : "bg-white/50",
@@ -175,7 +165,7 @@ function Nav() {
                     height="32" 
                     viewBox="0 0 1200 1200" 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="h-8 w-8 sm:h-10 sm:w-10"
+                    className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10"
                     fill="currentColor"
                   >
                     <g transform="scale(10.799934906398192) translate(3.055194218953451, 3.0558923085530623)">
@@ -190,9 +180,9 @@ function Nav() {
                     </g>
                   </svg>
                 </div>
-                <div className="leading-tight">
+                <div className="leading-tight min-w-0">
                   <div 
-                    className="text-2xl sm:text-3xl md:text-4xl tracking-tight bg-clip-text text-transparent drop-shadow-sm"
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-tight bg-clip-text text-transparent drop-shadow-sm whitespace-nowrap"
                     style={{ 
                       fontFamily: '"new-astro", sans-serif',
                       fontWeight: 700,
@@ -200,10 +190,12 @@ function Nav() {
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent'
                     }}>
-                    American Guardian
+                    {/* Show "AG" only on very small mobile (<375px), full name on typical mobile+ */}
+                    <span className="hidden min-[375px]:inline">American Guardian</span>
+                    <span className="min-[375px]:hidden">AG</span>
                   </div>
                   <div 
-                    className="text-base sm:text-lg tracking-wide bg-clip-text text-transparent"
+                    className="text-xs sm:text-sm md:text-base lg:text-lg tracking-wide bg-clip-text text-transparent hidden min-[375px]:block whitespace-nowrap"
                     style={{ 
                       fontFamily: '"new-astro", sans-serif',
                       fontWeight: 600,
@@ -217,10 +209,10 @@ function Nav() {
               </a>
             </div>
 
-            {/* Center: Desktop nav (absolutely centered) */}
-            <div className="pointer-events-none absolute inset-x-0 flex justify-center">
-              <div className="hidden lg:flex lg:flex-1 lg:justify-center pointer-events-auto">
-                <div ref={navRef} className="relative flex items-center gap-8">
+            {/* Center: Desktop nav (absolutely centered) - only on xl+ (1280px+) to keep tablet/hub clean */}
+            <div className="pointer-events-none absolute inset-x-0 hidden xl:flex xl:justify-center" data-nav-center="true">
+              <div className="flex flex-1 justify-center pointer-events-auto max-w-2xl">
+                <div ref={navRef} className="relative flex items-center gap-6 xl:gap-8">
                   {nav.map((item) => {
                     const isActive = active === item.href;
                     return (
@@ -234,7 +226,7 @@ function Nav() {
                         whileHover={{ y: reducedMotion ? 0 : -1 }}
                         transition={{ duration: 0.2, ease: premiumEase }}
                         className={[
-                          "relative py-2 text-sm font-medium tracking-[0.01em] transition-colors",
+                          "relative py-2 text-xs xl:text-sm font-medium tracking-[0.01em] transition-colors whitespace-nowrap",
                           scrolled
                             ? (isActive ? "text-slate-900" : "text-slate-600 hover:text-slate-900")
                             : (isActive ? "text-slate-800" : "text-slate-700/90 hover:text-slate-900"),
@@ -268,58 +260,64 @@ function Nav() {
             </div>
 
             {/* Right: Desktop actions + mobile button */}
-            <div className="flex items-center gap-3">
-              <div className="hidden items-center gap-4 lg:flex">
-                <a
-                  href="tel:+19165733231"
-                  className={[
-                    "inline-flex h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-all backdrop-blur-sm",
-                    scrolled
-                      ? "bg-white/50 text-slate-800 hover:bg-white/70"
-                      : "bg-white/40 text-slate-800 hover:bg-white/60",
-                  ].join(" ")}
-                >
-                  <PhoneCall className="h-4 w-4 text-cyan-600" />
-                  <span>+1 (916) 573-3231</span>
-                </a>
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+              {/* Desktop phone - only show on xl+ (1280px+) to keep tablet/hub clean */}
+              <a
+                href="tel:+19165733231"
+                data-nav-phone="true"
+                className={[
+                  "hidden xl:inline-flex h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-all backdrop-blur-sm whitespace-nowrap",
+                  scrolled
+                    ? "bg-white/50 text-slate-800 hover:bg-white/70"
+                    : "bg-white/40 text-slate-800 hover:bg-white/60",
+                ].join(" ")}
+              >
+                <PhoneCall className="h-4 w-4 text-cyan-600 flex-shrink-0" />
+                <span>+1 (916) 573-3231</span>
+              </a>
+              
+              {/* Desktop CTA button - only show on xl+ (1280px+) to keep tablet/hub clean */}
+              <div className="hidden xl:block" data-nav-cta="true">
                 <MagneticButton
                   className="h-12 px-6 text-sm font-semibold"
-                  onClick={() =>
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-                  }
+                  onClick={() => scrollToSection("contact")}
                 >
                   Request care
                 </MagneticButton>
               </div>
 
-              {/* Mobile menu button */}
+              {/* Mobile menu button - always visible, hamburger icon */}
               <button
                 onClick={() => setOpen((v) => !v)}
                 className={[
-                  "inline-flex items-center justify-center rounded-xl p-2.5 backdrop-blur transition-all",
+                  "inline-flex items-center justify-center rounded-xl p-2 sm:p-2.5 backdrop-blur transition-all min-w-[44px] min-h-[44px]",
                   scrolled
                     ? "bg-white/50 text-slate-800 hover:bg-white/70"
                     : "bg-white/40 text-slate-800 hover:bg-white/60",
                 ].join(" ")}
                 aria-label="Toggle navigation"
+                aria-expanded={open}
               >
                 <div className="space-y-1.5">
-                  <span className="block h-0.5 w-6 rounded-full bg-slate-900" />
-                  <span className="block h-0.5 w-6 rounded-full bg-slate-900" />
+                  <span className={`block h-0.5 w-5 sm:w-6 rounded-full bg-slate-900 transition-transform ${open ? 'rotate-45 translate-y-2' : ''}`} />
+                  <span className={`block h-0.5 w-5 sm:w-6 rounded-full bg-slate-900 transition-opacity ${open ? 'opacity-0' : ''}`} />
+                  <span className={`block h-0.5 w-5 sm:w-6 rounded-full bg-slate-900 transition-transform ${open ? '-rotate-45 -translate-y-2' : ''}`} />
                 </div>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile/Tablet menu - shown on all widths < 1280px (xl) */}
         {open ? (
-          <div className={[
-            "lg:hidden backdrop-blur-xl transition-all",
-            scrolled
-              ? "bg-white/50"
-              : "bg-white/40",
-          ].join(" ")}>
+          <div 
+            data-mobile-menu="true"
+            className={[
+              "xl:hidden backdrop-blur-xl transition-all",
+              scrolled
+                ? "bg-white/50"
+                : "bg-white/40",
+            ].join(" ")}>
             <div className="flex w-full flex-col gap-1 px-4 pb-4 pt-2 sm:px-6">
               {nav.map((item) => (
                 <a
@@ -349,12 +347,10 @@ function Nav() {
                   +1 (916) 573-3231
                 </a>
                 <MagneticButton
-                  className="w-full px-3 py-3 text-sm font-semibold"
+                  className="w-full px-3 py-3 text-sm font-semibold min-h-[44px]"
                   onClick={() => {
                     setOpen(false);
-                    document
-                      .getElementById("contact")
-                      ?.scrollIntoView({ behavior: "smooth" });
+                    scrollToSection("contact");
                   }}
                 >
                   Request care

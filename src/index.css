@@ -44,8 +44,6 @@
 
 html {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -56,14 +54,89 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
   width: 100%;
+}
+
+/* Prevent media elements from overflowing - targeted fix only */
+img, video, iframe {
   max-width: 100%;
-  overflow-x: hidden;
+  height: auto;
+}
+
+/* Smart display optimizations (Nest Hub & Nest Hub Max) */
+/* Target short-height screens at tablet/desktop widths */
+@media (min-width: 1024px) and (max-height: 800px) {
+  /* Ensure hero has proper top offset to prevent nav overlap on Hub devices */
+  /* Nav height on Hub: ~96px (announcement + nav bar), add 12px offset for safety */
+  section[id="hero"] {
+    padding-top: 6.75rem !important; /* ~108px - ensures nav never overlaps hero content */
+  }
+  
+  /* Reduce excessive padding on other sections for short screens */
+  section:not([id="hero"]) {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  /* Keep min-height but remove max-height constraint to prevent content compression */
+  section[id="hero"].min-h-screen {
+    min-height: 100vh;
+    /* Removed max-height: 100vh to prevent awkward vertical gaps and content squeezing */
+  }
+}
+
+/* Nest Hub Max (1280×800) - Hide desktop nav elements to prevent overlap */
+/* On short-height screens (max-height: 800px) at desktop width (1280px+), hide center nav and right actions */
+@media (min-width: 1280px) and (max-height: 800px) {
+  /* Hide center nav links container */
+  nav [data-nav-center="true"] {
+    display: none !important;
+  }
+  
+  /* Hide phone button */
+  nav [data-nav-phone="true"] {
+    display: none !important;
+  }
+  
+  /* Hide desktop CTA button container */
+  nav [data-nav-cta="true"] {
+    display: none !important;
+  }
+  
+  /* Show mobile menu on Nest Hub Max even though width is 1280px+ */
+  /* Override xl:hidden to allow menu to show on short-height screens */
+  nav [data-mobile-menu="true"] {
+    display: block !important;
+  }
+}
+
+/* Tablet portrait range optimization (iPad Air: 820px, iPad Pro: 834px, Surface Pro 7: 912px) */
+/* Reduce hero top padding to minimize dead space while accounting for nav height */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Ensure first section (Services) doesn't peek under nav */
+  section[id="services"] {
+    margin-top: 0;
+  }
+  
+  /* Minimal hero top offset: nav height (~88px on tablet) + tiny offset = ~90px = 5.625rem */
+  /* Further reduced to eliminate dead space - content starts immediately below nav */
+  section[id="hero"] {
+    padding-top: 5.625rem; /* ~90px - minimal offset, just enough to clear nav */
+  }
+  
+  /* Change hero content alignment from center to start for tighter spacing */
+  /* This removes the justify-center vertical centering that creates extra space */
+  section[id="hero"] > div[class*="flex-col"] {
+    justify-content: flex-start !important; /* Changed from justify-center */
+    padding-top: 0.5rem !important; /* Minimal top padding */
+    padding-bottom: 1rem !important; /* Reduced from pb-8 sm:pb-10 on tablets */
+  }
+  
+  /* No CSS override needed - Hero.jsx now uses xl:grid-cols-12 instead of lg:grid-cols-12 */
+  /* This ensures iPad Pro (834px) stays stacked since xl is 1280px */
 }
 

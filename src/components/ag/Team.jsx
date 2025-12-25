@@ -4,6 +4,7 @@ import { CheckCircle2, Shield, ArrowRight } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
 import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, cardHover, premiumEase } from "../../lib/motion";
+import { scrollToSection } from "../../lib/scroll";
 
 function Team() {
   const reducedMotion = useReducedMotionFlag();
@@ -158,7 +159,7 @@ function Team() {
             href="#stories"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById("stories")?.scrollIntoView({ behavior: "smooth" });
+              scrollToSection("stories");
             }}
             whileHover={{ scale: reducedMotion ? 1 : 1.02, y: reducedMotion ? 0 : -1 }}
             whileTap={{ scale: reducedMotion ? 1 : 0.98 }}

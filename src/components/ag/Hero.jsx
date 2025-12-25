@@ -7,6 +7,7 @@ import GlassCard from "./ui/GlassCard";
 import MagneticButton from "./ui/MagneticButton";
 import ScrollHint from "./ui/ScrollHint";
 import { useReducedMotionFlag, fadeUp, scaleIn, staggerContainer, premiumEase } from "../../lib/motion";
+import { scrollToSection } from "../../lib/scroll";
 
 function AnimatedUnderline() {
   return (
@@ -48,8 +49,9 @@ function Hero() {
 
   return (
     <section
+      id="hero"
       onMouseMove={onMove}
-      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-20 sm:pt-24 md:pt-28 lg:pt-32 w-full min-h-screen flex flex-col"
+      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-16 sm:pt-18 md:pt-20 lg:pt-24 xl:pt-28 w-full min-h-screen flex flex-col"
     >
       <ParticleField className="opacity-50" />
       <GlowBlob className="-left-28 top-32 h-[520px] w-[520px]" delay={0.2} />
@@ -63,8 +65,8 @@ function Hero() {
         animate="show"
         className="relative w-full flex-1 flex flex-col justify-center pb-8 sm:pb-10 lg:pb-12"
       >
-        <div className="grid items-stretch gap-4 sm:gap-5 lg:gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-7 pl-4 sm:pl-6 md:pl-8 lg:pl-10 xl:pl-12 pr-4 sm:pr-6 lg:pr-3">
+        <div className="grid grid-cols-1 items-stretch gap-4 sm:gap-5 md:gap-6 xl:grid-cols-12 xl:gap-6">
+          <div className="w-full xl:col-span-7 px-4 sm:px-6 md:px-8 xl:pl-10 xl:pr-3">
             <motion.div
               variants={fadeUp(reducedMotion)}
               className="inline-flex items-center gap-1.5 rounded-full border border-cyan-200/40 bg-cyan-50/40 px-3 py-1 text-[11px] font-normal text-slate-600 backdrop-blur"
@@ -95,11 +97,15 @@ function Hero() {
               variants={fadeUp(reducedMotion)}
               className="mt-5 sm:mt-6 md:mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
-              <MagneticButton className="px-6 py-3.5 text-sm sm:text-base min-h-[44px]" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              <MagneticButton className="px-6 py-3.5 text-sm sm:text-base min-h-[44px]" onClick={() => scrollToSection("contact")}>
                 Request a care plan
               </MagneticButton>
               <a
                 href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("services");
+                }}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 shadow-sm transition hover:bg-slate-50 hover:border-cyan-200 min-h-[44px]"
               >
                 Explore services
@@ -151,7 +157,7 @@ function Hero() {
 
           <motion.div
             variants={scaleIn(reducedMotion)}
-            className="lg:col-span-5 pl-4 sm:pl-6 md:pl-8 lg:pl-3 pr-4 sm:pr-6 md:pr-8 lg:pr-10 xl:pr-12 flex"
+            className="w-full xl:col-span-5 px-4 sm:px-6 md:px-8 xl:pl-3 xl:pr-10 flex"
           >
             <motion.div
               ref={imageRef}
@@ -167,7 +173,7 @@ function Hero() {
 
               <GlassCard className="p-0 overflow-hidden w-full h-full" disable3DTilt={true}>
                 {/* Hero image only - no dashboard content */}
-                <div className="relative w-full min-h-[450px] sm:min-h-[500px] md:min-h-[550px] lg:min-h-[600px] xl:min-h-[650px]">
+                <div className="relative w-full min-h-[400px] sm:min-h-[450px] md:min-h-[480px] lg:min-h-[600px] xl:min-h-[650px]">
                   <img
                     src="/images/hero-main.png"
                     alt="Nurse providing home health care during a visit"

@@ -49,7 +49,7 @@ function Coverage() {
                       Sacramento, CA 95826-2579
                     </div>
                     <div className="mt-4 text-base font-semibold text-slate-900">Primary region</div>
-                    <div className="mt-1 text-base text-slate-600 leading-relaxed">Sacramento County • Placer County • Contra Costa County • Stanislaus County • and surrounding counties</div>
+                    <div className="mt-1 text-base text-slate-600 leading-relaxed break-words">Sacramento County • Placer County • Contra Costa County • Stanislaus County • and surrounding counties</div>
                   </div>
                   <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3 flex-shrink-0">
                     <MapPin className="h-6 w-6 text-cyan-500" />
@@ -70,7 +70,7 @@ function Coverage() {
                   <Shield className="h-4 w-4 text-cyan-500" />
                   Insurance & eligibility
                 </div>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm text-slate-600 break-words">
                   We currently accept traditional Medicare and select Medicare Advantage and commercial plans in Sacramento County, Placer County, Contra Costa County, Stanislaus County, and surrounding counties.
                   During intake we verify benefits, confirm homebound status when required, and walk families through any out‑of‑pocket costs.
                 </p>

@@ -45,7 +45,7 @@ function Services() {
       whileInView="show"
       viewport={viewportConfig}
       variants={containerVariants}
-      className="relative bg-gradient-to-b from-indigo-50/40 via-white to-purple-50/30 py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32"
+      className="relative bg-gradient-to-b from-indigo-50/40 via-white to-purple-50/30 py-12 sm:py-16 lg:py-20 scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 lg:scroll-mt-32"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.08),rgba(59,130,246,0.06),rgba(255,255,255,0)_60%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
