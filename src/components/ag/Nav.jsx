@@ -36,7 +36,7 @@ function Nav() {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     const targetId = href.replace("#", "");
-    scrollToSection(targetId, { offset: 8 }); // Small additional offset for visual spacing
+    scrollToSection(targetId); // Uses default buffer from scroll.js
     setActive(href);
   };
 

@@ -4,6 +4,7 @@ import { BadgeCheck, CheckCircle2, Clock, MapPin, Shield } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
 import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig } from "../../lib/motion";
+import { scrollToSection } from "../../lib/scroll";
 
 function Coverage() {
   const reducedMotion = useReducedMotionFlag();
@@ -157,6 +158,10 @@ function Coverage() {
           <div className="lg:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
             <a
               href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact");
+              }}
               className="inline-flex items-center justify-center rounded-2xl border border-cyan-200 bg-white px-5 py-3 text-sm font-semibold text-cyan-700 shadow-sm transition hover:bg-cyan-50 hover:border-cyan-300 min-h-[44px]"
             >
               Check availability

@@ -65,7 +65,7 @@ function PatientStories() {
       whileInView="show"
       viewport={viewportConfig}
       variants={containerVariants}
-      className="relative bg-transparent py-12 sm:py-16 lg:py-20 scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 lg:scroll-mt-32"
+      className="relative bg-transparent py-12 sm:py-16 lg:py-20 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32"
     >
       <GlowBlob className="-left-24 top-10 h-72 w-72 opacity-70" delay={0.15} />
       <GlowBlob className="right-0 bottom-0 h-80 w-80 opacity-60" delay={0.5} />

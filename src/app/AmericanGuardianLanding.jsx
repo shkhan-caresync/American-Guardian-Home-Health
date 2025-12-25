@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../components/ag/Nav";
 import Hero from "../components/ag/Hero";
 import WhyAmericanGuardian from "../components/ag/WhyAmericanGuardian";
@@ -9,8 +9,14 @@ import PatientsProviders from "../components/ag/PatientsProviders";
 import Team from "../components/ag/Team";
 import PatientStories from "../components/ag/PatientStories";
 import Contact from "../components/ag/Contact";
+import { handleInitialHash } from "../lib/scroll";
 
 export default function AmericanGuardianLanding() {
+  // Handle initial hash navigation on page load
+  useEffect(() => {
+    handleInitialHash();
+  }, []);
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-b from-cyan-50/40 via-white via-indigo-50/30 to-teal-50/40">
       <div

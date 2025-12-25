@@ -6,6 +6,7 @@ import GlassCard from "./ui/GlassCard";
 import MagneticButton from "./ui/MagneticButton";
 import { LOGO_SRC } from "../../config/brand";
 import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, buttonPress } from "../../lib/motion";
+import { scrollToSection } from "../../lib/scroll";
 
 function Contact() {
   const reducedMotion = useReducedMotionFlag();
@@ -238,6 +239,10 @@ function Contact() {
                       <li>
                         <a
                           href="#services"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection("services");
+                          }}
                           className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                         >
                           Core services
@@ -246,6 +251,10 @@ function Contact() {
                       <li>
                         <a
                           href="#services"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection("services");
+                          }}
                           className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                         >
                           Specialty focus areas
@@ -254,6 +263,10 @@ function Contact() {
                       <li>
                         <a
                           href="#how"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection("how");
+                          }}
                           className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                         >
                           How home health works
@@ -262,6 +275,10 @@ function Contact() {
                       <li>
                         <a
                           href="#coverage"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection("coverage");
+                          }}
                           className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                         >
                           Coverage &amp; service areas
@@ -277,6 +294,10 @@ function Contact() {
                     <li>
                       <a
                         href="#team"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection("team");
+                        }}
                         className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                       >
                         Meet the care team
@@ -285,6 +306,10 @@ function Contact() {
                     <li>
                       <a
                         href="#patients"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection("patients");
+                        }}
                         className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                       >
                         For patients &amp; families
@@ -293,6 +318,10 @@ function Contact() {
                     <li>
                       <a
                         href="#providers"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection("providers");
+                        }}
                         className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                       >
                         For referring providers
@@ -301,6 +330,10 @@ function Contact() {
                     <li>
                       <a
                         href="#stories"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection("stories");
+                        }}
                         className="relative inline-flex items-center text-slate-600 transition-colors transition-transform hover:text-slate-900 hover:translate-x-[2px] after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gradient-to-r after:from-cyan-400/0 after:via-cyan-400/70 after:to-cyan-400/0 after:transition-all hover:after:w-full"
                       >
                         Patient stories
