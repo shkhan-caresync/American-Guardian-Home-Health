@@ -2,10 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../../utils/cn";
 import { useReducedMotionFlag, cardHover, fadeUp, viewportConfig } from "../../../lib/motion";
+import { use3DTilt } from "../../../lib/use3DTilt";
 
 function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClass }) {
   const reducedMotion = useReducedMotionFlag();
   const hoverVariants = cardHover(reducedMotion);
+  const { cardRef, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({
+    maxRotateX: 5,
+    maxRotateY: 6,
+  });
   const colorSchemes = {
     cyan: {
       border: "border-cyan-300/60",
@@ -65,11 +70,19 @@ function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClas
 
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       initial="rest"
       whileHover="hover"
       whileTap="tap"
       variants={hoverVariants}
       viewport={viewportConfig}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
       className={`group relative overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-5 shadow-[0_18px_50px_-30px_rgba(14,116,144,0.28)] ring-1 ${colors.ring} backdrop-blur-2xl transition-shadow hover:shadow-[0_22px_60px_-28px_rgba(14,116,144,0.38)]`}
     >
       <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100">

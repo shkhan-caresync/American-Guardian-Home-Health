@@ -165,7 +165,7 @@ function Hero() {
             >
               <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_0%,rgba(51,211,213,0.22),rgba(0,0,0,0)_60%)] blur-2xl" />
 
-              <GlassCard className="p-0 overflow-hidden w-full h-full">
+              <GlassCard className="p-0 overflow-hidden w-full h-full" disable3DTilt={true}>
                 {/* Hero image only - no dashboard content */}
                 <div className="relative w-full min-h-[450px] sm:min-h-[500px] md:min-h-[550px] lg:min-h-[600px] xl:min-h-[650px]">
                   <img

@@ -2,17 +2,34 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../../utils/cn";
 import { useReducedMotionFlag, cardHover, premiumEase } from "../../../lib/motion";
+import { use3DTilt } from "../../../lib/use3DTilt";
 
-function GlassCard({ children, className }) {
+function GlassCard({ children, className, disable3DTilt = false }) {
   const reducedMotion = useReducedMotionFlag();
   const hoverVariants = cardHover(reducedMotion);
+  const tiltProps = disable3DTilt 
+    ? { cardRef: null, rotateX: 0, rotateY: 0, onMouseMove: undefined, onMouseLeave: undefined }
+    : use3DTilt({
+        maxRotateX: 6,
+        maxRotateY: 8,
+      });
+  
+  const { cardRef, rotateX, rotateY, onMouseMove, onMouseLeave } = tiltProps;
 
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       variants={hoverVariants}
       initial="rest"
       whileHover="hover"
       whileTap="tap"
+      style={{
+        rotateX: disable3DTilt ? undefined : rotateX,
+        rotateY: disable3DTilt ? undefined : rotateY,
+        transformStyle: disable3DTilt ? undefined : "preserve-3d",
+      }}
       className={cn(
         "relative overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white/75 via-white/65 to-cyan-50/40",
         "shadow-[0_28px_80px_-40px_rgba(14,116,144,0.35)] ring-1 ring-cyan-200/60 backdrop-blur-2xl",
