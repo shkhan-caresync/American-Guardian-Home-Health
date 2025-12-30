@@ -34,9 +34,19 @@ function Nav() {
 
   // Handle smooth scroll with nav offset using centralized utility
   const handleNavClick = (e, href) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default anchor jump
+    
     const targetId = href.replace("#", "");
-    scrollToSection(targetId); // Uses default buffer from scroll.js
+    
+    // Scroll to section (one operation, no corrections)
+    scrollToSection(targetId);
+    
+    // Update URL hash without triggering browser scroll (use replaceState)
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", href);
+    }
+    
+    // Update active state
     setActive(href);
   };
 
@@ -142,7 +152,7 @@ function Nav() {
 
         {/* Main nav bar - seamless continuation */}
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
-          <div className="relative flex w-full items-center justify-between gap-2 sm:gap-3 md:gap-4 py-3 sm:py-4 md:py-4 lg:py-5 xl:py-6">
+          <div className="relative flex w-full items-center justify-between gap-2 sm:gap-3 md:gap-4 py-3 sm:py-4 md:py-4 lg:py-5 xl:py-6 min-w-0">
             {/* Left: Brand - responsive sizing */}
             <div className="flex items-center flex-shrink-0 min-w-0">
               <a 
@@ -260,13 +270,13 @@ function Nav() {
             </div>
 
             {/* Right: Desktop actions + mobile button */}
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
               {/* Desktop phone - only show on xl+ (1280px+) to keep tablet/hub clean */}
               <a
                 href="tel:+19165733231"
                 data-nav-phone="true"
                 className={[
-                  "hidden xl:inline-flex h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-all backdrop-blur-sm whitespace-nowrap",
+                  "hidden xl:inline-flex h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-all backdrop-blur-sm whitespace-nowrap flex-shrink-0",
                   scrolled
                     ? "bg-white/50 text-slate-800 hover:bg-white/70"
                     : "bg-white/40 text-slate-800 hover:bg-white/60",
@@ -277,9 +287,9 @@ function Nav() {
               </a>
               
               {/* Desktop CTA button - only show on xl+ (1280px+) to keep tablet/hub clean */}
-              <div className="hidden xl:block" data-nav-cta="true">
+              <div className="hidden xl:block flex-shrink-0" data-nav-cta="true">
                 <MagneticButton
-                  className="h-12 px-6 text-sm font-semibold"
+                  className="h-12 px-6 text-sm font-semibold whitespace-nowrap"
                   onClick={() => scrollToSection("contact")}
                 >
                   Request care
@@ -324,7 +334,14 @@ function Nav() {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => {
-                    handleNavClick(e, item.href);
+                    e.preventDefault(); // Prevent default anchor jump
+                    const targetId = item.href.replace("#", "");
+                    scrollToSection(targetId);
+                    // Update URL hash without triggering browser scroll
+                    if (window.history && window.history.replaceState) {
+                      window.history.replaceState(null, "", item.href);
+                    }
+                    setActive(item.href);
                     setOpen(false);
                   }}
                   className={[

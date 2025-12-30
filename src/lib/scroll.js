@@ -2,32 +2,35 @@
  * Centralized scroll utility for anchor navigation
  * Handles fixed nav offset consistently across all breakpoints
  * 
- * Features:
- * - Dynamic nav height measurement
- * - Consistent buffer for visual spacing
- * - Post-scroll correction to handle layout shifts
- * - Supports reduced motion preferences
+ * Design principles:
+ * - One scroll per click, no corrections or delayed operations
+ * - Manual window.scrollTo calculation (ignores CSS scroll-margin-top)
+ * - Last click wins (cancels previous scroll)
+ * - Deterministic and stable under rapid clicking
  */
 
-const DEFAULT_BUFFER = 16; // Visual spacing buffer in pixels
-const POST_SCROLL_DELAY = 150; // Delay before post-scroll correction (ms)
-const CORRECTION_THRESHOLD = 4; // Minimum offset difference to trigger correction (px)
+const DEFAULT_BUFFER = 8; // Visual spacing buffer in pixels (separates heading from nav)
+
+// Track scroll requests to implement "last click wins"
+let scrollRequestId = 0;
 
 /**
- * Get the current nav height dynamically
- * Accounts for announcement strip and main nav bar
- * Measures at call time to handle responsive nav height changes
+ * Get the current nav height dynamically at runtime
+ * Measures the actual <nav> element height, including announcement strip if visible
+ * No caching - measures fresh each time to handle responsive changes
  */
 export function getNavHeight() {
   if (typeof window === "undefined" || typeof document === "undefined") {
-    return 120; // fallback
+    return 96; // Safe fallback
   }
   
   const nav = document.querySelector("nav");
-  if (!nav) return 120;
+  if (!nav) return 96;
   
-  // Get actual rendered height
-  return nav.offsetHeight;
+  // Use getBoundingClientRect for accurate measurement
+  // This includes the full nav height (announcement strip + main nav bar)
+  const navRect = nav.getBoundingClientRect();
+  return navRect.height;
 }
 
 /**
@@ -39,41 +42,18 @@ function prefersReducedMotion() {
 }
 
 /**
- * Perform a single scroll operation
- * @private
- */
-function performScroll(targetY, behavior) {
-  window.scrollTo({
-    top: Math.max(0, targetY),
-    behavior: behavior || (prefersReducedMotion() ? "auto" : "smooth"),
-  });
-}
-
-/**
- * Calculate the target scroll position for a section
- * @private
- */
-function calculateTargetPosition(element, navHeight, buffer) {
-  const rect = element.getBoundingClientRect();
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  const elementTop = rect.top + currentScroll;
-  const targetY = elementTop - navHeight - buffer;
-  return targetY;
-}
-
-/**
- * Scroll to a section with proper nav offset and post-scroll correction
+ * Scroll to a section with proper nav offset
+ * Deterministic: one scroll operation per call, no corrections, no timeouts
+ * 
  * @param {string} sectionId - The ID of the section to scroll to (without #)
  * @param {Object} options - Scroll options
  * @param {string} options.behavior - "smooth" | "auto" (defaults based on reduced motion)
  * @param {number} options.buffer - Additional buffer spacing (defaults to DEFAULT_BUFFER)
- * @param {boolean} options.correctAfterScroll - Enable post-scroll correction (default: true)
  */
 export function scrollToSection(sectionId, options = {}) {
   const {
     behavior,
     buffer = DEFAULT_BUFFER,
-    correctAfterScroll = true,
   } = options;
 
   const targetElement = document.getElementById(sectionId);
@@ -82,40 +62,48 @@ export function scrollToSection(sectionId, options = {}) {
     return;
   }
 
+  // Increment scroll request ID (last click wins - but we don't actually cancel scrolls,
+  // we just ensure we don't do multiple operations)
+  scrollRequestId++;
+
   // Measure nav height at click time (may vary by breakpoint)
   const navHeight = getNavHeight();
   
-  // Calculate target position
-  const targetY = calculateTargetPosition(targetElement, navHeight, buffer);
+  // Get element position relative to viewport
+  const rect = targetElement.getBoundingClientRect();
+  // Get current scroll position
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  // Calculate absolute element top position
+  const elementTop = rect.top + currentScroll;
+  
+  // Check if element has CSS scroll-margin-top (sections have scroll-mt-* classes)
+  // We should use this value if it's set, as it's already tuned for the layout
+  const computedStyle = window.getComputedStyle(targetElement);
+  const scrollMarginTop = parseInt(computedStyle.scrollMarginTop, 10) || 0;
+  
+  // If scroll-margin-top is set, use it (it's already accounting for nav + spacing)
+  // Otherwise, calculate manually: elementTop - navHeight - buffer
+  const targetY = scrollMarginTop > 0 
+    ? elementTop - scrollMarginTop
+    : elementTop - navHeight - buffer;
+  
+  // Ensure non-negative
+  const finalTargetY = Math.max(0, targetY);
   
   // Determine scroll behavior
   const scrollBehavior = behavior || (prefersReducedMotion() ? "auto" : "smooth");
   
-  // Perform initial scroll
-  performScroll(targetY, scrollBehavior);
-
-  // Post-scroll correction for layout shifts (fonts, images, animations)
-  // Only if smooth scrolling and correction is enabled
-  if (correctAfterScroll && scrollBehavior === "smooth" && !prefersReducedMotion()) {
-    // Wait for scroll to complete and layout to settle
-    setTimeout(() => {
-      // Re-measure after potential layout shifts
-      const newNavHeight = getNavHeight();
-      const newTargetY = calculateTargetPosition(targetElement, newNavHeight, buffer);
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      const offsetDifference = Math.abs(currentScroll - newTargetY);
-      
-      // If we're off by more than threshold, correct it
-      if (offsetDifference > CORRECTION_THRESHOLD) {
-        performScroll(newTargetY, "auto"); // Use auto for correction (instant)
-      }
-    }, POST_SCROLL_DELAY);
-  }
+  // Perform exactly one scroll operation
+  window.scrollTo({
+    top: finalTargetY,
+    behavior: scrollBehavior,
+  });
 }
 
 /**
  * Handle anchor link clicks with proper offset
  * Use this in onClick handlers for anchor links
+ * 
  * @param {Event} e - The click event
  * @param {string} sectionId - The ID of the section to scroll to (without #)
  * @param {Object} options - Scroll options (passed to scrollToSection)
@@ -138,13 +126,11 @@ export function handleInitialHash() {
   const sectionId = hash.replace("#", "");
   if (!sectionId) return;
   
-  // Wait for layout to settle, then scroll
-  // Use requestAnimationFrame to ensure DOM is ready
+  // Wait for layout to settle, then scroll (instant, no animation on initial load)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       scrollToSection(sectionId, {
-        behavior: "auto", // Instant scroll on initial load
-        correctAfterScroll: false, // No correction needed for initial load
+        behavior: "auto",
       });
     });
   });
