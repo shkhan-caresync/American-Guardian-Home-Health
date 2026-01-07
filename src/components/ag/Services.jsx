@@ -4,7 +4,7 @@ import { ArrowRight, ClipboardCheck, HeartPulse, Home, Shield, Stethoscope } fro
 import SectionTitle from "./ui/SectionTitle";
 import Badge from "./ui/Badge";
 import GlassCard from "./ui/GlassCard";
-import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, premiumEase } from "../../lib/motion";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, premiumEase, slideInFromLeft, slideInFromRight, slideInFromBottom } from "../../lib/motion";
 import { scrollToSection } from "../../lib/scroll";
 
 function Services() {
@@ -62,8 +62,21 @@ function Services() {
         >
           {items.map((i, idx) => {
             const colorSchemes = ["cyan", "purple", "emerald", "orange"];
+            // Alternate directions for visual interest
+            const directionVariants = [
+              slideInFromLeft(reducedMotion),
+              slideInFromRight(reducedMotion),
+              slideInFromBottom(reducedMotion),
+              slideInFromLeft(reducedMotion),
+            ];
             return (
-              <motion.div key={i.title} variants={fadeUp(reducedMotion)}>
+              <motion.div
+                key={i.title}
+                variants={directionVariants[idx % 4]}
+                initial="hidden"
+                whileInView="show"
+                viewport={viewportConfig}
+              >
                 <Badge
                   icon={i.icon}
                   title={i.title}
@@ -95,10 +108,22 @@ function Services() {
               { title: "COPD / Pulmonary Support", desc: "Breathing support education and consistent routines.", color: "emerald", image: "/images/specialty-copd.png", position: "object-[center_15%]", scale: "" },
               { title: "Stroke Recovery", desc: "Therapy-aligned support for safe daily function.", color: "orange", image: "/images/specialty-stroke.png", position: "object-[center_35%]", scale: "scale-105" },
               { title: "Post-Surgical Rehab", desc: "Recovery support after discharge to reduce setbacks.", color: "pink", image: "/images/specialty-post-surgical.png", position: "object-[center_35%]", scale: "scale-105" },
-            ].map((item, idx) => (
+            ].map((item, idx) => {
+              // Alternate directions for specialty cards
+              const directionVariants = [
+                slideInFromLeft(reducedMotion),
+                slideInFromRight(reducedMotion),
+                slideInFromBottom(reducedMotion),
+                slideInFromLeft(reducedMotion),
+                slideInFromRight(reducedMotion),
+                slideInFromBottom(reducedMotion),
+              ];
+              return (
               <motion.div
                 key={item.title}
-                variants={fadeUp(reducedMotion)}
+                variants={directionVariants[idx % 6]}
+                initial="hidden"
+                whileInView="show"
                 viewport={viewportConfig}
               >
                 <div className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/80 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-[1px] hover:border-slate-300">
@@ -124,7 +149,8 @@ function Services() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

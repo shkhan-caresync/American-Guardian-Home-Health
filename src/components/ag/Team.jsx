@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Shield, ArrowRight } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
+import GlassDivider from "./ui/GlassDivider";
 import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, cardHover, premiumEase } from "../../lib/motion";
 import { scrollToSection } from "../../lib/scroll";
 
@@ -135,7 +136,7 @@ function Team() {
                       </p>
                     )}
 
-                    <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                    <GlassDivider variant="subtle" className="mt-5" />
 
                     <div className="mt-5 flex items-center gap-2 text-xs text-slate-600">
                       <CheckCircle2 className={`h-4 w-4 ${colors.check}`} />

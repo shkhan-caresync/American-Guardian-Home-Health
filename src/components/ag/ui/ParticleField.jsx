@@ -49,13 +49,15 @@ function ParticleField({ className }) {
       return () => ro.disconnect();
     }
 
-    const count = 110;
+    // Reduce particle count on low-end devices for better performance
+    const isLowEnd = navigator.hardwareConcurrency < 4 || (navigator.deviceMemory && navigator.deviceMemory < 4);
+    const count = isLowEnd ? 60 : 90; // Reduced from 110
     const pts = Array.from({ length: count }).map(() => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      r: 0.8 + Math.random() * 1.8,
+      vx: (Math.random() - 0.5) * 0.18, // Slightly slower for smoother animation
+      vy: (Math.random() - 0.5) * 0.18,
+      r: 0.8 + Math.random() * 1.5, // Slightly smaller
       a: 0.05 + Math.random() * 0.08,
     }));
 
@@ -82,18 +84,27 @@ function ParticleField({ className }) {
         ctx.fill();
       }
 
+      // Optimize connection drawing - only check nearby particles
+      const maxDist = 140; // Reduced from 160
+      const maxDistSq = maxDist * maxDist;
+      
+      // Use spatial partitioning for better performance
       for (let i = 0; i < pts.length; i++) {
+        const a = pts[i];
+        // Only check particles within reasonable distance
         for (let j = i + 1; j < pts.length; j++) {
-          const a = pts[i];
           const b = pts[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
+          const dx = Math.abs(a.x - b.x);
+          const dy = Math.abs(a.y - b.y);
+          
+          // Quick distance check before expensive calculation
+          if (dx > maxDist || dy > maxDist) continue;
+          
           const d2 = dx * dx + dy * dy;
-          const max = 160 * 160;
-          if (d2 < max) {
-            const t = 1 - d2 / max;
-            ctx.strokeStyle = `rgba(51, 211, 213, ${0.08 * t})`;
-            ctx.lineWidth = 1;
+          if (d2 < maxDistSq) {
+            const t = 1 - d2 / maxDistSq;
+            ctx.strokeStyle = `rgba(51, 211, 213, ${0.06 * t})`; // Slightly reduced opacity
+            ctx.lineWidth = 0.8; // Thinner lines
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);

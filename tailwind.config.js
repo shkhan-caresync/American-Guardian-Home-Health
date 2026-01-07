@@ -29,7 +29,26 @@ export default {
         'outfit': ['outfit', 'sans-serif'],
         'new-astro': ['new-astro', 'sans-serif'],
         'new-astro-soft': ['new-astro-soft', 'sans-serif'],
-      }
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        glow: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+          '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        float: 'float 6s ease-in-out infinite',
+        glow: 'glow 3s ease-in-out infinite',
+        shimmer: 'shimmer 2s linear infinite',
+      },
     },
   },
   plugins: [],

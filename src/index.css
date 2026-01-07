@@ -67,6 +67,48 @@ img, video, iframe {
   height: auto;
 }
 
+/* Performance optimizations for smooth animations */
+/* GPU acceleration hints for animated elements */
+[data-animated],
+.motion-div,
+[class*="animate-"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize backdrop-blur performance */
+[class*="backdrop-blur"] {
+  will-change: backdrop-filter;
+  transform: translateZ(0);
+}
+
+/* Optimize blur effects */
+[class*="blur-"] {
+  will-change: filter;
+  transform: translateZ(0);
+}
+
+/* Reduce repaints on scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize glass effects */
+[class*="glass"],
+[class*="Glass"] {
+  contain: layout style paint;
+  will-change: transform, opacity, backdrop-filter;
+  transform: translateZ(0);
+}
+
+/* Optimize particle/canvas elements */
+canvas {
+  will-change: contents;
+  image-rendering: optimizeSpeed;
+}
+
 /* Smart display optimizations (Nest Hub & Nest Hub Max) */
 /* Target short-height screens at tablet/desktop widths */
 @media (min-width: 1024px) and (max-height: 800px) {

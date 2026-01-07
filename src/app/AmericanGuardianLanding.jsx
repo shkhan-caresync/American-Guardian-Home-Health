@@ -9,6 +9,7 @@ import PatientsProviders from "../components/ag/PatientsProviders";
 import Team from "../components/ag/Team";
 import PatientStories from "../components/ag/PatientStories";
 import Contact from "../components/ag/Contact";
+import ScrollProgress from "../components/ag/ui/ScrollProgress";
 import { handleInitialHash } from "../lib/scroll";
 
 export default function AmericanGuardianLanding() {
@@ -28,6 +29,7 @@ export default function AmericanGuardianLanding() {
         }}
       />
 
+      <ScrollProgress />
       <Nav />
       <Hero />
       <WhyAmericanGuardian />

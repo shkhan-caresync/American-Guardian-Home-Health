@@ -23,15 +23,23 @@ export function use3DTilt(options = {}) {
   const rx = useSpring(rotateX, springConfig);
   const ry = useSpring(rotateY, springConfig);
 
+  // Throttle mouse move for better performance
+  let rafId = null;
   const handleMouseMove = (e) => {
     if (reducedMotion || !cardRef.current) return;
     
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    // Cancel previous frame if pending
+    if (rafId) cancelAnimationFrame(rafId);
     
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
+    rafId = requestAnimationFrame(() => {
+      const rect = cardRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      mouseX.set(e.clientX - centerX);
+      mouseY.set(e.clientY - centerY);
+      rafId = null;
+    });
   };
 
   const handleMouseLeave = () => {

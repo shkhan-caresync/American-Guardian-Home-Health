@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
+import GlassDivider from "./ui/GlassDivider";
 import GlowBlob from "./ui/GlowBlob";
 import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, cardHover } from "../../lib/motion";
 
@@ -111,7 +112,8 @@ function PatientStories() {
                   <p className="text-base leading-relaxed text-slate-700 italic">
                     &ldquo;{story.quote}&rdquo;
                   </p>
-                  <div className="mt-5 pt-4 border-t border-slate-200">
+                  <GlassDivider variant="subtle" className="mt-5" />
+                  <div className="mt-4 pt-4">
                     <div className="text-sm font-semibold text-slate-900">{story.author}</div>
                     <div className="mt-1 text-sm text-slate-600">{story.context}</div>
                   </div>

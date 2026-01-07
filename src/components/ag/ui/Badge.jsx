@@ -1,12 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../../utils/cn";
-import { useReducedMotionFlag, cardHover, fadeUp, viewportConfig } from "../../../lib/motion";
+import { useReducedMotionFlag, cardHover, fadeUp, viewportConfig, iconHover } from "../../../lib/motion";
 import { use3DTilt } from "../../../lib/use3DTilt";
 
 function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClass }) {
   const reducedMotion = useReducedMotionFlag();
   const hoverVariants = cardHover(reducedMotion);
+  const iconVariants = iconHover(reducedMotion);
   const { cardRef, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt({
     maxRotateX: 5,
     maxRotateY: 6,
@@ -83,13 +84,13 @@ function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClas
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className={`group relative overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-5 shadow-[0_18px_50px_-30px_rgba(14,116,144,0.28)] ring-1 ${colors.ring} backdrop-blur-2xl transition-shadow hover:shadow-[0_22px_60px_-28px_rgba(14,116,144,0.38)]`}
+      className={`group relative overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-5 shadow-[0_18px_50px_-30px_rgba(14,116,144,0.28)] ring-1 ${colors.ring} backdrop-blur-xl transition-shadow hover:shadow-[0_22px_60px_-28px_rgba(14,116,144,0.38)] will-change-transform [transform:translateZ(0)] [contain:layout_style_paint]`}
     >
       <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100">
         <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/80 via-white/30 to-transparent" />
-        <div className={`absolute -left-16 -top-20 h-56 w-56 rounded-full ${colors.glow1} blur-3xl`} />
-        <div className={`absolute -right-16 -bottom-20 h-56 w-56 rounded-full ${colors.glow2} blur-3xl`} />
-        <div className={`absolute right-6 top-10 h-14 w-14 rounded-full ${colors.glow3} blur-2xl`} />
+        <div className={`absolute -left-16 -top-20 h-56 w-56 rounded-full ${colors.glow1} blur-2xl [will-change:filter] [transform:translateZ(0)]`} />
+        <div className={`absolute -right-16 -bottom-20 h-56 w-56 rounded-full ${colors.glow2} blur-2xl [will-change:filter] [transform:translateZ(0)]`} />
+        <div className={`absolute right-6 top-10 h-14 w-14 rounded-full ${colors.glow3} blur-xl [will-change:filter] [transform:translateZ(0)]`} />
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16) 0%,rgba(255,255,255,0.0) 45%,rgba(255,255,255,0.16) 100%)]" />
       </div>
 
@@ -107,9 +108,14 @@ function Badge({ icon: Icon, title, desc, colorScheme = "cyan", image, imageClas
         )}
 
         <div className="flex items-start gap-4">
-          <div className={`rounded-2xl border ${colors.iconBorder} ${colors.iconBg} p-3 shadow-inner flex-shrink-0`}>
+          <motion.div
+            className={`rounded-2xl border ${colors.iconBorder} ${colors.iconBg} p-3 shadow-inner flex-shrink-0`}
+            variants={iconVariants}
+            initial="rest"
+            whileHover="hover"
+          >
             <Icon className={`h-6 w-6 ${colors.iconColor}`} />
-          </div>
+          </motion.div>
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <h3 className="text-lg font-semibold tracking-tight text-slate-900">{title}</h3>

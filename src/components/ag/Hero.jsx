@@ -6,6 +6,7 @@ import GlowBlob from "./ui/GlowBlob";
 import GlassCard from "./ui/GlassCard";
 import MagneticButton from "./ui/MagneticButton";
 import ScrollHint from "./ui/ScrollHint";
+import CountUp from "./ui/CountUp";
 import { useReducedMotionFlag, fadeUp, scaleIn, staggerContainer, premiumEase } from "../../lib/motion";
 import { scrollToSection } from "../../lib/scroll";
 
@@ -51,7 +52,7 @@ function Hero() {
     <section
       id="hero"
       onMouseMove={onMove}
-      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-16 sm:pt-18 md:pt-20 lg:pt-24 xl:pt-28 w-full min-h-screen flex flex-col"
+      className="relative overflow-hidden bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 to-white pt-16 sm:pt-18 md:pt-20 lg:pt-24 xl:pt-28 w-full min-h-screen flex flex-col [contain:layout_style_paint]"
     >
       <ParticleField className="opacity-50" />
       <GlowBlob className="-left-28 top-32 h-[520px] w-[520px]" delay={0.2} />
@@ -77,12 +78,49 @@ function Hero() {
 
             <motion.h1
               variants={fadeUp(reducedMotion)}
-              className="mt-3 sm:mt-4 md:mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent"
+              className="mt-3 sm:mt-4 md:mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight bg-clip-text text-transparent relative"
             >
-              Home health that feels
-              <span className="block">
+              <motion.span
+                className="block bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent"
+                animate={
+                  reducedMotion
+                    ? {}
+                    : {
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }
+                }
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                }}
+              >
+                Home health that feels
+              </motion.span>
+              <motion.span
+                className="block bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-900 bg-clip-text text-transparent"
+                animate={
+                  reducedMotion
+                    ? {}
+                    : {
+                        backgroundPosition: ["100% 50%", "0% 50%", "100% 50%"],
+                      }
+                }
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: 0.5,
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                }}
+              >
                 premium, protected, and personal.
-              </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p
@@ -120,11 +158,15 @@ function Hero() {
             >
               <div className="flex items-center gap-1.5">
                 <div className="h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
-                <span>1,200+ patients served</span>
+                <span>
+                  <CountUp value={1200} suffix="+ patients served" />
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
-                <span>98% satisfaction</span>
+                <span>
+                  <CountUp value={98} suffix="% satisfaction" />
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="h-1.5 w-1.5 rounded-full bg-cyan-400/60" />

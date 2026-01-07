@@ -134,7 +134,9 @@ function Nav() {
     <nav className="fixed inset-x-0 top-0 z-50 w-full">
       {/* Combined nav container for seamless blend */}
       <div className={[
-        "backdrop-blur-xl transition-all duration-300",
+        "backdrop-blur-lg transition-all duration-300",
+        "[will-change:backdrop-filter,transform]",
+        "[transform:translateZ(0)]",
         scrolled
           ? "bg-gradient-to-b from-cyan-50/40 via-white/35 to-indigo-50/30 shadow-[0_8px_30px_-15px_rgba(15,23,42,0.15)]"
           : "bg-gradient-to-b from-cyan-50/50 via-white via-indigo-50/30 shadow-none",

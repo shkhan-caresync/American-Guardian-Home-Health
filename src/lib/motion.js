@@ -119,8 +119,9 @@ export const staggerContainer = (reducedMotion = false) => ({
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: reducedMotion ? 0 : 0.08,
-      delayChildren: reducedMotion ? 0 : 0.1,
+      staggerChildren: reducedMotion ? 0 : 0.06, // Reduced from 0.08 for faster feel
+      delayChildren: reducedMotion ? 0 : 0.08, // Reduced from 0.1
+      ease: premiumEase,
     },
   },
 });
@@ -159,6 +160,132 @@ export const buttonPress = (reducedMotion = false) => ({
   },
   tap: {
     scale: reducedMotion ? 1 : 0.98,
+  },
+});
+
+/**
+ * Directional slide-in variants for card reveals
+ */
+export const slideInFromLeft = (reducedMotion = false) => ({
+  hidden: {
+    opacity: reducedMotion ? 1 : 0,
+    x: reducedMotion ? 0 : -40,
+    y: reducedMotion ? 0 : 20,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      duration: reducedMotion ? 0 : 0.7,
+      ease: premiumEase,
+    },
+  },
+});
+
+export const slideInFromRight = (reducedMotion = false) => ({
+  hidden: {
+    opacity: reducedMotion ? 1 : 0,
+    x: reducedMotion ? 0 : 40,
+    y: reducedMotion ? 0 : 20,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      duration: reducedMotion ? 0 : 0.7,
+      ease: premiumEase,
+    },
+  },
+});
+
+export const slideInFromBottom = (reducedMotion = false) => ({
+  hidden: {
+    opacity: reducedMotion ? 1 : 0,
+    y: reducedMotion ? 0 : 40,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: reducedMotion ? 0 : 0.7,
+      ease: premiumEase,
+    },
+  },
+});
+
+/**
+ * Icon hover animation variant
+ */
+export const iconHover = (reducedMotion = false) => ({
+  rest: {
+    rotate: 0,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      ease: premiumEase,
+    },
+  },
+  hover: {
+    rotate: reducedMotion ? 0 : [0, -10, 10, 0],
+    scale: reducedMotion ? 1 : 1.1,
+    transition: {
+      duration: 0.4,
+      ease: premiumEase,
+    },
+  },
+});
+
+/**
+ * Floating animation variant (for badges, cards, etc.)
+ */
+export const floatAnimation = (reducedMotion = false) => ({
+  animate: reducedMotion
+    ? {}
+    : {
+        y: [0, -8, 0],
+      },
+  transition: {
+    duration: 4,
+    repeat: Infinity,
+    ease: "easeInOut",
+  },
+});
+
+/**
+ * Glow pulse animation variant
+ */
+export const glowPulse = (reducedMotion = false) => ({
+  animate: reducedMotion
+    ? {}
+    : {
+        opacity: [0.4, 0.7, 0.4],
+        scale: [1, 1.05, 1],
+      },
+  transition: {
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  },
+});
+
+/**
+ * Text reveal animation (word by word)
+ */
+export const textReveal = (reducedMotion = false) => ({
+  hidden: {
+    opacity: reducedMotion ? 1 : 0,
+    y: reducedMotion ? 0 : 20,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: reducedMotion ? 0 : 0.6,
+      ease: premiumEase,
+      staggerChildren: reducedMotion ? 0 : 0.03,
+    },
   },
 });
 

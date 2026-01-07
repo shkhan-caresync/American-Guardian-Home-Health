@@ -15,6 +15,45 @@ const DEFAULT_BUFFER = 8; // Visual spacing buffer in pixels (separates heading 
 let scrollRequestId = 0;
 
 /**
+ * Detect if we're on iOS Safari
+ */
+function isIOSSafari() {
+  if (typeof window === "undefined") return false;
+  const ua = window.navigator.userAgent;
+  const isIOS = /iPad|iPhone|iPod/.test(ua);
+  const isSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS|OPiOS/.test(ua);
+  return isIOS && isSafari;
+}
+
+/**
+ * Get safe area inset top (for devices with notches/Dynamic Island)
+ */
+function getSafeAreaInsetTop() {
+  if (typeof window === "undefined" || typeof CSS === "undefined" || !CSS.supports) {
+    return 0;
+  }
+  
+  // Check if we're in a safe area context
+  try {
+    const testEl = document.createElement("div");
+    testEl.style.paddingTop = "env(safe-area-inset-top)";
+    document.body.appendChild(testEl);
+    const computed = window.getComputedStyle(testEl);
+    const paddingTop = computed.paddingTop;
+    document.body.removeChild(testEl);
+    
+    // If it's not "0px", parse the value
+    if (paddingTop && paddingTop !== "0px") {
+      return parseInt(paddingTop, 10);
+    }
+  } catch (e) {
+    // Fallback if env() isn't supported
+  }
+  
+  return 0;
+}
+
+/**
  * Get the current nav height dynamically at runtime
  * Measures the actual <nav> element height, including announcement strip if visible
  * No caching - measures fresh each time to handle responsive changes
@@ -66,38 +105,64 @@ export function scrollToSection(sectionId, options = {}) {
   // we just ensure we don't do multiple operations)
   scrollRequestId++;
 
-  // Measure nav height at click time (may vary by breakpoint)
-  const navHeight = getNavHeight();
+  const isIOS = isIOSSafari();
   
-  // Get element position relative to viewport
-  const rect = targetElement.getBoundingClientRect();
-  // Get current scroll position
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  // Calculate absolute element top position
-  const elementTop = rect.top + currentScroll;
-  
-  // Check if element has CSS scroll-margin-top (sections have scroll-mt-* classes)
-  // We should use this value if it's set, as it's already tuned for the layout
-  const computedStyle = window.getComputedStyle(targetElement);
-  const scrollMarginTop = parseInt(computedStyle.scrollMarginTop, 10) || 0;
-  
-  // If scroll-margin-top is set, use it (it's already accounting for nav + spacing)
-  // Otherwise, calculate manually: elementTop - navHeight - buffer
-  const targetY = scrollMarginTop > 0 
-    ? elementTop - scrollMarginTop
-    : elementTop - navHeight - buffer;
-  
-  // Ensure non-negative
-  const finalTargetY = Math.max(0, targetY);
-  
-  // Determine scroll behavior
-  const scrollBehavior = behavior || (prefersReducedMotion() ? "auto" : "smooth");
-  
-  // Perform exactly one scroll operation
-  window.scrollTo({
-    top: finalTargetY,
-    behavior: scrollBehavior,
-  });
+  // For iOS, use requestAnimationFrame to ensure layout is settled
+  const performScroll = () => {
+    // Measure nav height at click time (may vary by breakpoint)
+    const navHeight = getNavHeight();
+    
+    // Get element position relative to viewport
+    const rect = targetElement.getBoundingClientRect();
+    // Get current scroll position - use the most reliable method
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+    // Calculate absolute element top position
+    const elementTop = rect.top + currentScroll;
+    
+    // Check if element has CSS scroll-margin-top (sections have scroll-mt-* classes)
+    const computedStyle = window.getComputedStyle(targetElement);
+    const scrollMarginTop = parseInt(computedStyle.scrollMarginTop, 10) || 0;
+    
+    // Calculate target scroll position
+    let targetY;
+    
+    if (isIOS) {
+      // On iOS, use manual calculation that accounts for nav height
+      // This is more reliable than CSS scroll-margin-top which can be inconsistent on iOS
+      // Use the larger of scroll-margin-top or navHeight + buffer to ensure proper spacing
+      const manualOffset = navHeight + buffer + 8; // Extra 8px for iOS spacing
+      const offset = Math.max(scrollMarginTop, manualOffset);
+      targetY = elementTop - offset;
+    } else {
+      // Desktop: use scroll-margin-top if available, otherwise manual calculation
+      if (scrollMarginTop > 0) {
+        targetY = elementTop - scrollMarginTop;
+      } else {
+        targetY = elementTop - navHeight - buffer;
+      }
+    }
+    
+    // Ensure non-negative
+    const finalTargetY = Math.max(0, targetY);
+    
+    // Determine scroll behavior
+    const scrollBehavior = behavior || (prefersReducedMotion() ? "auto" : "smooth");
+    
+    // Perform exactly one scroll operation
+    window.scrollTo({
+      top: finalTargetY,
+      behavior: scrollBehavior,
+    });
+  };
+
+  // On iOS, wait for next frame to ensure layout is settled
+  if (isIOS) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(performScroll);
+    });
+  } else {
+    performScroll();
+  }
 }
 
 /**

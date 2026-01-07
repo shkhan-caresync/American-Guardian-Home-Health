@@ -3,15 +3,19 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock, PhoneCall, Shield, Award, CheckCircle2, BadgeCheck } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import GlassCard from "./ui/GlassCard";
+import GlassInput from "./ui/GlassInput";
+import GlassBadge from "./ui/GlassBadge";
+import GlassDivider from "./ui/GlassDivider";
 import MagneticButton from "./ui/MagneticButton";
 import { LOGO_SRC } from "../../config/brand";
-import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, buttonPress } from "../../lib/motion";
+import { useReducedMotionFlag, fadeUp, staggerContainer, viewportConfig, buttonPress, iconHover } from "../../lib/motion";
 import { scrollToSection } from "../../lib/scroll";
 
 function Contact() {
   const reducedMotion = useReducedMotionFlag();
   const containerVariants = staggerContainer(reducedMotion);
   const buttonVariants = buttonPress(reducedMotion);
+  const iconVariants = iconHover(reducedMotion);
 
   return (
     <motion.section
@@ -36,28 +40,20 @@ function Contact() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2">
                   <span className="text-base font-medium text-slate-700">Full name</span>
-                  <motion.input
-                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+                  <GlassInput
                     placeholder="Full name of patient or contact person"
                   />
                 </label>
                 <label className="grid gap-2">
                   <span className="text-base font-medium text-slate-700">Phone</span>
-                  <motion.input
-                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+                  <GlassInput
                     placeholder="Best phone number for follow-up"
                   />
                 </label>
                 <label className="grid gap-2 sm:col-span-2">
                   <span className="text-base font-medium text-slate-700">Email</span>
-                  <motion.input
-                    whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+                  <GlassInput
+                    type="email"
                     placeholder="Email for visit confirmations (optional)"
                   />
                 </label>
@@ -67,7 +63,7 @@ function Contact() {
                     whileFocus={{ scale: reducedMotion ? 1 : 1.01 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     rows={4}
-                    className="rounded-2xl border border-slate-200 bg-white p-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+                    className="rounded-2xl border border-white/60 bg-white/40 backdrop-blur-xl p-4 text-base text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-400/80 focus:ring-2 focus:ring-cyan-200/50 shadow-[0_4px_16px_-8px_rgba(14,116,144,0.15)] transition-all duration-200"
                     placeholder="Who is the patient, what support do they need, and what city are they located in?"
                   />
                 </label>
@@ -101,9 +97,14 @@ function Contact() {
                       <div className="text-sm font-semibold text-slate-900">Speak with intake</div>
                       <div className="mt-1 text-sm text-slate-600">Fast scheduling and coverage verification</div>
                     </div>
-                    <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
+                    <motion.div
+                      className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3"
+                      variants={iconVariants}
+                      initial="rest"
+                      whileHover="hover"
+                    >
                       <PhoneCall className="h-6 w-6 text-cyan-500" />
-                    </div>
+                    </motion.div>
                   </div>
 
                 <div className="mt-5 space-y-3">
@@ -145,9 +146,14 @@ function Contact() {
                     <div className="text-sm font-semibold text-slate-900">Hours</div>
                     <div className="mt-1 text-sm text-slate-600">Mon–Fri 8am–6pm • After-hours triage</div>
                   </div>
-                  <div className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3">
+                  <motion.div
+                    className="rounded-2xl border border-cyan-100 bg-cyan-50 p-3"
+                    variants={iconVariants}
+                    initial="rest"
+                    whileHover="hover"
+                  >
                     <Clock className="h-6 w-6 text-cyan-500" />
-                  </div>
+                  </motion.div>
                 </div>
               </GlassCard>
             </div>
@@ -389,35 +395,32 @@ function Contact() {
                 Accreditations & Certifications
               </motion.div>
               <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8">
-                <motion.div
-                  variants={fadeUp(reducedMotion)}
-                  className="flex items-center gap-2 rounded-xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 to-white px-4 py-3 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <Award className="h-5 w-5 text-emerald-600 flex-shrink-0" />
-                  <div>
-                    <div className="text-xs font-semibold text-slate-900">ACHC</div>
-                    <div className="text-[10px] text-slate-600">Accredited</div>
-                  </div>
+                <motion.div variants={fadeUp(reducedMotion)}>
+                  <GlassBadge
+                    icon={Award}
+                    title="ACHC"
+                    subtitle="Accredited"
+                    colorScheme="emerald"
+                    floating={true}
+                  />
                 </motion.div>
-                <motion.div
-                  variants={fadeUp(reducedMotion)}
-                  className="flex items-center gap-2 rounded-xl border border-blue-200/60 bg-gradient-to-br from-blue-50/80 to-white px-4 py-3 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                  <div>
-                    <div className="text-xs font-semibold text-slate-900">Medicare</div>
-                    <div className="text-[10px] text-slate-600">Certified</div>
-                  </div>
+                <motion.div variants={fadeUp(reducedMotion)}>
+                  <GlassBadge
+                    icon={CheckCircle2}
+                    title="Medicare"
+                    subtitle="Certified"
+                    colorScheme="blue"
+                    floating={true}
+                  />
                 </motion.div>
-                <motion.div
-                  variants={fadeUp(reducedMotion)}
-                  className="flex items-center gap-2 rounded-xl border border-cyan-200/60 bg-gradient-to-br from-cyan-50/80 to-white px-4 py-3 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <BadgeCheck className="h-5 w-5 text-cyan-600 flex-shrink-0" />
-                  <div>
-                    <div className="text-xs font-semibold text-slate-900">State Licensed</div>
-                    <div className="text-[10px] text-slate-600">California</div>
-                  </div>
+                <motion.div variants={fadeUp(reducedMotion)}>
+                  <GlassBadge
+                    icon={BadgeCheck}
+                    title="State Licensed"
+                    subtitle="California"
+                    colorScheme="cyan"
+                    floating={true}
+                  />
                 </motion.div>
               </div>
             </motion.div>

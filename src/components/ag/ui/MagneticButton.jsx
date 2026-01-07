@@ -35,7 +35,11 @@ function MagneticButton({ children, className, onClick }) {
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       onClick={onClick}
-      style={{ x: reducedMotion ? 0 : sx, y: reducedMotion ? 0 : sy }}
+      style={{ 
+        x: reducedMotion ? 0 : sx, 
+        y: reducedMotion ? 0 : sy,
+        willChange: reducedMotion ? "auto" : "transform",
+      }}
       variants={buttonVariants}
       initial="rest"
       whileHover="hover"
@@ -44,6 +48,8 @@ function MagneticButton({ children, className, onClick }) {
         "group relative inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold",
         "bg-cyan-500 text-white shadow-lg shadow-cyan-500/30 hover:bg-cyan-600",
         "ring-1 ring-cyan-200 transition-all min-h-[44px]",
+        "[transform:translateZ(0)]",
+        "[will-change:transform]",
         className
       )}
     >

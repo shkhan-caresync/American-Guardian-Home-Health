@@ -6,8 +6,10 @@ function GlowBlob({ className, delay = 0 }) {
   return (
     <motion.div
       className={cn(
-        "absolute rounded-full blur-3xl",
+        "absolute rounded-full blur-2xl",
         "bg-[radial-gradient(circle_at_30%_30%,rgba(51,211,213,0.55),rgba(51,211,213,0.0)_60%)]",
+        "[will-change:transform,opacity,filter]",
+        "[transform:translateZ(0)]",
         className
       )}
       initial={{ opacity: 0, scale: 0.9 }}
