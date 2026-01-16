@@ -7,13 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "generate-mapping": "node scripts/generate-field-mapping.js"
   },
   "dependencies": {
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.294.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "framer-motion": "^10.16.16",
-    "lucide-react": "^0.294.0"
+    "react-router-dom": "^7.12.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -29,4 +31,3 @@
     "vite": "^5.0.8"
   }
 }
-

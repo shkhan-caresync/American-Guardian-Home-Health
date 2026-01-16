@@ -288,4 +288,3 @@ export const textReveal = (reducedMotion = false) => ({
     },
   },
 });
-

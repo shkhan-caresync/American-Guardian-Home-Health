@@ -31,6 +31,9 @@ function Nav() {
     { label: "Care team", href: "#team" },
     { label: "Contact", href: "#contact" },
   ];
+  
+  // Separate link for Apply (not in nav menu, shown as button)
+  const applyLink = { label: "Apply", href: "/apply" };
 
   // Handle smooth scroll with nav offset using centralized utility
   const handleNavClick = (e, href) => {
@@ -288,6 +291,17 @@ function Nav() {
                 <span>+1 (916) 573-3231</span>
               </a>
               
+              {/* Desktop Apply button - show on xl+ next to Request Care */}
+              <a
+                href="/apply"
+                className={[
+                  "hidden xl:inline-flex h-12 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-all backdrop-blur-sm whitespace-nowrap flex-shrink-0",
+                  "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 shadow-lg shadow-cyan-500/30",
+                ].join(" ")}
+              >
+                Apply as Clinician
+              </a>
+              
               {/* Desktop CTA button - only show on xl+ (1280px+) to keep tablet/hub clean */}
               <div className="hidden xl:block flex-shrink-0" data-nav-cta="true">
                 <MagneticButton
@@ -298,11 +312,11 @@ function Nav() {
                 </MagneticButton>
               </div>
 
-              {/* Mobile menu button - always visible, hamburger icon */}
+              {/* Mobile menu button - show on all sizes, but only functional on < xl */}
               <button
                 onClick={() => setOpen((v) => !v)}
                 className={[
-                  "inline-flex items-center justify-center rounded-xl p-2 sm:p-2.5 backdrop-blur transition-all min-w-[44px] min-h-[44px]",
+                  "xl:hidden inline-flex items-center justify-center rounded-xl p-2 sm:p-2.5 backdrop-blur transition-all min-w-[44px] min-h-[44px]",
                   scrolled
                     ? "bg-white/50 text-slate-800 hover:bg-white/70"
                     : "bg-white/40 text-slate-800 hover:bg-white/60",
@@ -357,6 +371,13 @@ function Nav() {
                 </a>
               ))}
               <div className="mt-2 flex flex-col gap-2 border-t border-slate-200/50 pt-3">
+                <a
+                  href="/apply"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2 rounded-lg px-3 py-3 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg shadow-cyan-500/30 min-h-[44px]"
+                >
+                  Apply as Clinician
+                </a>
                 <a
                   href="tel:+19165733231"
                   onClick={() => setOpen(false)}

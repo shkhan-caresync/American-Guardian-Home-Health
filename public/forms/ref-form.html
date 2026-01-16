@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Health Referral Form</title>
+  <link rel="stylesheet" href="https://use.typekit.net/csd7tye.css" />
+  <style>
+    :root {
+      --ink: #0b1b2b;
+      --muted: #5c6a7d;
+      --accent: #3fc1c9;
+      --accent-dark: #364f6b;
+      --border: #d6dde7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "proxima-nova", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      line-height: 1.28;
+      background-color: #f7f9fb;
+      margin: 0;
+    }
+    .form-container {
+      max-width: 8.5in;
+      margin: 12px auto;
+      background: white;
+      padding: 24px 28px 22px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(11, 27, 43, 0.06);
+      position: relative;
+    }
+    .form-container::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(63,193,201,0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      position: relative;
+      background: linear-gradient(180deg, rgba(63,193,201,0.06), rgba(255,255,255,0));
+      border-bottom: 1px solid var(--border);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(54,79,107,0.2), rgba(63,193,201,0.35), rgba(54,79,107,0.15));
+    }
+    .brand-lockup {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .brand-stack {
+      line-height: 1.05;
+    }
+    .monogram {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, rgba(63,193,201,0.18), rgba(54,79,107,0.12));
+      border: 1px solid rgba(63,193,201,0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "new-astro", sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--accent-dark);
+      letter-spacing: 0.5px;
+      margin-right: 8px;
+    }
+    .brand-title {
+      font-family: "new-astro", sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -0.2px;
+      background-image: linear-gradient(to right, #364f6b, #3fc1c9, #364f6b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .brand-subtitle {
+      font-family: "new-astro", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--accent-dark);
+    }
+    .brand-form {
+      position: absolute;
+      left: 50%;
+      bottom: 2px;
+      transform: translateX(-50%);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      background: #ffffff;
+      padding: 0 12px;
+      line-height: 1.1;
+      z-index: 1;
+    }
+    .contact {
+      text-align: right;
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--accent-dark);
+      border: 1px solid rgba(63,193,201,0.4);
+      background: rgba(63,193,201,0.12);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
+    .badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--accent-dark);
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+      margin: 16px 0 8px;
+      position: relative;
+    }
+    h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(63,193,201,0.45), transparent 60%);
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 14px; }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+    .input-group { margin-bottom: 8px; }
+    label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    input[type="text"], input[type="date"], select {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 11px;
+    }
+    .notes {
+      height: 42px;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px 10px;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #f7fbfd;
+    }
+    .checkbox-item { font-size: 11px; display: flex; align-items: center; gap: 6px; color: var(--ink); }
+
+    .signature-box {
+      margin-top: 16px;
+      border: 1px dashed #cbd5e1;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+    .signature-line {
+      height: 26px;
+      border-bottom: 1px solid #334155;
+      margin-bottom: 8px;
+    }
+    .helper {
+      font-size: 9px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 9px;
+      text-align: center;
+      color: #7a8796;
+      letter-spacing: 0.3px;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0.2in;
+    }
+    @media print {
+      body { background: white; }
+      .form-container {
+        margin: 0;
+        padding: 14px 16px 12px;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .form-container::after { opacity: 0.08; }
+      header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        background: none;
+      }
+      header::after { background: #cbd5e1; }
+      .contact { font-size: 9.5px; }
+      .brand-form {
+        background: #ffffff;
+      }
+      h2 { margin-top: 10px; }
+      h2::after { display: none; }
+      input[type="text"], input[type="date"], select {
+        border: none;
+        border-bottom: 1px solid #2f3b4a;
+        border-radius: 0;
+        padding: 2px 0 3px;
+        font-size: 10.5px;
+      }
+      .notes {
+        border: none;
+        border-bottom: 1px solid #2f3b4a;
+        height: 32px;
+      }
+      .checkbox-group { border: none; background: white; padding: 0; }
+      .signature-box { border: none; padding: 0; }
+      .signature-line { height: 22px; border-bottom: 1px solid #2f3b4a; }
+      .helper { display: none; }
+      .badge {
+        background: #f3f6f9;
+        border-color: #cbd5e1;
+        color: #475569;
+      }
+      .monogram {
+        background: #f3f6f9;
+        border-color: #cbd5e1;
+        color: #475569;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+    <header>
+      <div>
+        <div class="brand-lockup">
+          <div class="monogram">AG</div>
+          <div class="brand-stack">
+            <div class="brand-title">American Guardian</div>
+            <div class="brand-subtitle">Home Health</div>
+          </div>
+        </div>
+        <div class="brand-form">Home Health Referral Form</div>
+        <div class="badge">Referral Intake</div>
+      </div>
+      <div class="contact">
+        <div><strong>Phone:</strong> (916) 573-3231</div>
+        <div><strong>Fax:</strong> (916) 573-3231</div>
+        <div>9343 Tech Center Dr. Ste 140, Sacramento, CA 95826</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="input-group"><label>Referral Date</label><input type="text"></div>
+      <div class="input-group"><label>Urgency</label><input type="text"></div>
+    </div>
+
+    <h2>Patient Information</h2>
+    <div class="grid-3">
+      <div class="input-group"><label>Full Name</label><input type="text"></div>
+      <div class="input-group"><label>Date of Birth</label><input type="text"></div>
+      <div class="input-group"><label>Phone</label><input type="text"></div>
+      <div class="input-group span-3"><label>Address</label><input type="text"></div>
+      <div class="input-group"><label>Preferred Language</label><input type="text"></div>
+      <div class="input-group"><label>Best Time to Contact</label><input type="text"></div>
+    </div>
+
+    <h2>Insurance</h2>
+    <div class="grid-3">
+      <div class="input-group"><label>Primary Insurance</label><input type="text"></div>
+      <div class="input-group"><label>Member ID</label><input type="text"></div>
+      <div class="input-group"><label>Group #</label><input type="text"></div>
+      <div class="input-group span-3"><label>Secondary Insurance</label><input type="text"></div>
+    </div>
+
+    <h2>Clinical Details</h2>
+    <div class="grid">
+      <div class="input-group"><label>Primary Diagnosis / Reason for Referral</label><input type="text"></div>
+      <div class="input-group"><label>Secondary Diagnoses / Comorbidities</label><input type="text"></div>
+      <div class="input-group"><label>Start of Care Requested</label><input type="text"></div>
+      <div class="input-group"><label>Discharge Date (if from facility)</label><input type="text"></div>
+    </div>
+
+    <h2>Clinical Services Requested</h2>
+    <div class="checkbox-group">
+        <div class="checkbox-item"><input type="checkbox"> Skilled Nursing</div>
+        <div class="checkbox-item"><input type="checkbox"> Physical Therapy</div>
+        <div class="checkbox-item"><input type="checkbox"> Occupational Therapy</div>
+        <div class="checkbox-item"><input type="checkbox"> Speech Therapy</div>
+        <div class="checkbox-item"><input type="checkbox"> Medical Social Work</div>
+        <div class="checkbox-item"><input type="checkbox"> Home Health Aide</div>
+    </div>
+    <div class="grid" style="margin-top: 6px;">
+      <div class="input-group span-2"><label>Visit Frequency / Special Instructions</label><input class="notes" type="text"></div>
+    </div>
+
+    <h2>Referring Provider</h2>
+    <div class="grid-3">
+      <div class="input-group"><label>Physician Name</label><input type="text"></div>
+      <div class="input-group"><label>Practice / Facility</label><input type="text"></div>
+      <div class="input-group"><label>Phone</label><input type="text"></div>
+      <div class="input-group"><label>Fax</label><input type="text"></div>
+      <div class="input-group"><label>NPI Number</label><input type="text"></div>
+      <div class="input-group"><label>Contact Person</label><input type="text"></div>
+    </div>
+
+    <div class="signature-box">
+      <label>Physician Signature</label>
+      <div class="signature-line"></div>
+      <p class="helper">I certify that a face-to-face encounter occurred and this patient is homebound and requires the skilled services listed above.</p>
+    </div>
+
+    <footer>CONFIDENTIAL HEALTHCARE INFORMATION - HIPAA COMPLIANT</footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+{
+    "solution": "third_party_forms",
+    "vendor": "jotform_hipaa",
+    "compliance_requirements": {
+      "baa_required": true,
+      "notes": [
+        "Use vendor HIPAA-enabled account and execute BAA before collecting PHI.",
+        "Disable submission data in email notifications; notify only that a submission exists.",
+        "Store medical/TB/immunization items separately from general onboarding."
+      ],
+      "sources": [
+        "Jotform HIPAA FAQ indicates HIPAA available with Gold plan and no submission data in email alerts.",
+        "BAA retrieval supported by Jotform HIPAA accounts."
+      ],
+      "citations": ["turn0search20", "turn0search8", "turn0search0"]
+    },
+    "forms": [
+      {
+        "id": "clinician_application_stage1",
+        "contains_phi": false,
+        "purpose": "Fast application (no SSN/DOB/medical).",
+        "required_fields": [
+          "full_name",
+          "email",
+          "phone",
+          "address",
+          "role_applied_for",
+          "licenses (type/state/number/expiry)",
+          "availability",
+          "work_authorized_us",
+          "reliable_transportation",
+          "employment_history_summary",
+          "references_min_2",
+          "attestation_signature"
+        ],
+        "uploads": ["resume_optional"]
+      },
+      {
+        "id": "conditional_offer_stage2",
+        "contains_phi": false,
+        "purpose": "Post-offer verification (non-medical).",
+        "required_fields": [
+          "license_copy_upload",
+          "degree_or_certificate_upload",
+          "drivers_license_upload",
+          "auto_insurance_upload_if_driving",
+          "policy_acknowledgements (hipaa/confidentiality, compliance, procedures, ppe)",
+          "background_check_consent"
+        ],
+        "uploads": [
+          "license_copy",
+          "degree_or_transcript",
+          "drivers_license",
+          "auto_insurance_optional",
+          "cpr_card_optional"
+        ]
+      },
+      {
+        "id": "confidential_medical_stage3",
+        "contains_phi": true,
+        "purpose": "Confidential medical file (TB/immunizations/HepB/health attestations).",
+        "required_fields": [
+          "tb_questionnaire",
+          "tb_results_upload_if_applicable",
+          "hepb_choice",
+          "hepb_proof_upload_if_applicable",
+          "communicable_disease_attestation"
+        ],
+        "uploads": ["tb_results", "immunization_records_optional", "hepb_proof_optional"],
+        "storage_rule": "Restrict access to authorized admins only; store separately."
+      }
+    ],
+    "website_integration": {
+      "pattern": "embedded_forms_in_modal_or_page",
+      "pages": [
+        {
+          "route": "/apply",
+          "embed": "clinician_application_stage1"
+        },
+        {
+          "route": "/onboarding",
+          "embed": "conditional_offer_stage2",
+          "access": "token_required"
+        },
+        {
+          "route": "/medical",
+          "embed": "confidential_medical_stage3",
+          "access": "token_required",
+          "additional_notice": "Confidential medical information"
+        }
+      ]
+    }
+  }
+  
