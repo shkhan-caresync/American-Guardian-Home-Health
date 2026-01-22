@@ -31,7 +31,7 @@ function Nav() {
     { label: "Care team", href: "#team" },
     { label: "Contact", href: "#contact" },
   ];
-  
+
   // Separate link for Apply (not in nav menu, shown as button)
   const applyLink = { label: "Apply", href: "/apply" };
 
@@ -161,9 +161,13 @@ function Nav() {
             {/* Left: Brand - responsive sizing */}
             <div className="flex items-center flex-shrink-0 min-w-0">
               <a 
-                href="#"
+                href="/"
                 onClick={(e) => {
                   e.preventDefault();
+                  if (window.location.pathname !== "/") {
+                    window.location.href = "/";
+                    return;
+                  }
                   window.scrollTo({ top: 0, behavior: "smooth" });
                   setActive("");
                 }}

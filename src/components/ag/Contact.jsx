@@ -126,6 +126,13 @@ function Contact() {
                     <span className="break-all pr-2 min-w-0 flex-1">intake@americanguardianhomehealth.com</span>
                     <ArrowRight className="h-4 w-4 flex-shrink-0 ml-2" />
                   </a>
+                  <a
+                    href="/forms/ref-form.html"
+                    className="flex items-center justify-between rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm font-semibold text-cyan-900 hover:bg-cyan-100 transition min-h-[44px]"
+                  >
+                    <span>Open referral form</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
                 </div>
 
                 <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">

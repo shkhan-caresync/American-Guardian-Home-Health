@@ -181,9 +181,7 @@ export const slideInFromLeft = (reducedMotion = false) => ({
       ease: premiumEase,
     },
   },
-});
-
-export const slideInFromRight = (reducedMotion = false) => ({
+});export const slideInFromRight = (reducedMotion = false) => ({
   hidden: {
     opacity: reducedMotion ? 1 : 0,
     x: reducedMotion ? 0 : 40,
@@ -213,9 +211,7 @@ export const slideInFromBottom = (reducedMotion = false) => ({
       ease: premiumEase,
     },
   },
-});
-
-/**
+});/**
  * Icon hover animation variant
  */
 export const iconHover = (reducedMotion = false) => ({
